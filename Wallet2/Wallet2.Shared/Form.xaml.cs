@@ -33,7 +33,7 @@ namespace Uno.UI.Demo.Samples
 			var messageDialog = new Windows.UI.Popups.MessageDialog($"Check was pressed");
 			await messageDialog.ShowAsync();
 
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(Homies));
 		}
 	}
 }
