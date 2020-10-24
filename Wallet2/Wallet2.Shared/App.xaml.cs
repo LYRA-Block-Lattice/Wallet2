@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ReduxSimple;
 using System.Threading;
+using Windows.Storage;
 
 namespace Wallet2
 {
@@ -45,6 +46,21 @@ namespace Wallet2
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            Store.RegisterEffects(
+                LyraWallet.States.Effects.CreateWalletEffect,
+                LyraWallet.States.Effects.OpenWalletEffect,
+                LyraWallet.States.Effects.OpenWalletAndSyncEffect,
+                LyraWallet.States.Effects.RestoreWalletEffect,
+                LyraWallet.States.Effects.RemoveWalletEffect,
+                LyraWallet.States.Effects.ChangeVoteWalletEffect,
+                LyraWallet.States.Effects.RefreshWalletEffect,
+                LyraWallet.States.Effects.SendTokenWalletEffect,
+                LyraWallet.States.Effects.CreateTokenWalletEffect,
+                LyraWallet.States.Effects.ImportWalletEffect,
+                LyraWallet.States.Effects.RedeemWalletEffect,
+                LyraWallet.States.Effects.NonFungibleTokenWalletEffect
+                );
         }
 
         /// <summary>
@@ -84,6 +100,9 @@ namespace Wallet2
             {
                 if (rootFrame.Content == null)
                 {
+                    //ApplicationData.
+
+
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter

@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Wallet2.Skia.Gtk": {
+      "commandName": "Project"
+    },
+    "WSL 2": {
+      "commandName": "WSL2",
+      "environmentVariables": {
+        "DISPLAY": "172.31.144.1:0"
+      },
+      "distributionName": ""
+    }
+  }
+}
