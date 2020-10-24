@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LyraWallet.States;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ReduxSimple;
+using System.Threading;
 
 namespace Wallet2
 {
@@ -24,13 +27,21 @@ namespace Wallet2
     /// </summary>
     sealed partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; set; }
+
+        public static readonly ReduxStore<RootState> Store =
+            new ReduxStore<RootState>(LyraWallet.States.Reducers.CreateReducers(), RootState.InitialState, true);
+
+        public static CancellationTokenSource WalletSubscribeCancellation = new CancellationTokenSource();
+
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
-            ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+            //ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
@@ -108,7 +119,7 @@ namespace Wallet2
         }
 
 
-        /// <summary>
+/*        /// <summary>
         /// Configures global logging
         /// </summary>
         /// <param name="factory"></param>
@@ -159,6 +170,6 @@ namespace Wallet2
 #else
                 .AddConsole(LogLevel.Information);
 #endif
-        }
+        }*/
     }
 }

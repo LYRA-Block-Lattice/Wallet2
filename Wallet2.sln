@@ -11,15 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.iOS", "Wallet2\Wall
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.UWP", "Wallet2\Wallet2.UWP\Wallet2.UWP.csproj", "{B7865B6A-E657-4848-B871-225D6CE84C21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.Wasm", "Wallet2\Wallet2.Wasm\Wallet2.Wasm.csproj", "{DCA3FD13-2C53-42D9-AC0A-55EEB28DA8A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet2.Wasm", "Wallet2\Wallet2.Wasm\Wallet2.Wasm.csproj", "{DCA3FD13-2C53-42D9-AC0A-55EEB28DA8A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.macOS", "Wallet2\Wallet2.macOS\Wallet2.macOS.csproj", "{60C16A3D-16CA-4091-9CC8-B6744C60F69B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.Skia.Wpf.Host", "Wallet2\Wallet2.Skia.Wpf.Host\Wallet2.Skia.Wpf.Host.csproj", "{AC55EB2C-2BA7-44B4-8365-FD4F63AA7F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet2.Skia.Wpf.Host", "Wallet2\Wallet2.Skia.Wpf.Host\Wallet2.Skia.Wpf.Host.csproj", "{AC55EB2C-2BA7-44B4-8365-FD4F63AA7F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.Skia.Wpf", "Wallet2\Wallet2.Skia.Wpf\Wallet2.Skia.Wpf.csproj", "{770660D0-9E7B-48B1-8266-7D8F99990368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet2.Skia.Wpf", "Wallet2\Wallet2.Skia.Wpf\Wallet2.Skia.Wpf.csproj", "{770660D0-9E7B-48B1-8266-7D8F99990368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet2.Skia.Gtk", "Wallet2\Wallet2.Skia.Gtk\Wallet2.Skia.Gtk.csproj", "{FF1CEB7F-C898-4BD6-88D0-61A71554C730}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet2.Skia.Gtk", "Wallet2\Wallet2.Skia.Gtk\Wallet2.Skia.Gtk.csproj", "{FF1CEB7F-C898-4BD6-88D0-61A71554C730}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

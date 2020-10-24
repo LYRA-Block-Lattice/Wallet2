@@ -32,6 +32,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Samples\Homies.xaml.cs">
       <DependentUpon>Homies.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)States\Actions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\Effects.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\Reducers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\RootState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)States\Selectors.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)CodeBox.xaml">

@@ -13,6 +13,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
+    <PackageReference Include="ReduxSimple">
+      <Version>3.5.1</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.UI" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
@@ -130,9 +133,6 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +149,11 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Lyra.Data">
+      <HintPath>..\..\..\LyraNetwork\Core\Lyra.Data\bin\Debug\netstandard2.0\Lyra.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\Wallet2.Shared\Wallet2.Shared.projitems" Label="Shared" Condition="Exists('..\Wallet2.Shared\Wallet2.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
