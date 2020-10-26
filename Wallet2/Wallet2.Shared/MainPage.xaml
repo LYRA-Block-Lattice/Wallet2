@@ -7,47 +7,88 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <material:Card HeaderContent="Elevated card"
-               SubHeaderContent="With small media and supporting content"
-               MediaContent="ms-appx:///Assets/SmallMedia.png"
-               SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-               Style="{StaticResource MaterialSmallMediaElevatedCardStyle}"
-               xmlns:material="using:Uno.Material.Controls">
-            <material:Card.HeaderContentTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"
-                    MaxLines="1"
-                    Margin="16,14,16,0"
-                    Style="{ThemeResource MaterialHeadline6}" />
-                </DataTemplate>
-            </material:Card.HeaderContentTemplate>
-            <material:Card.SubHeaderContentTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"
-                    MaxLines="2"
-                    Margin="16,0,16,14"
-                    Style="{ThemeResource MaterialBody2}" />
-                </DataTemplate>
-            </material:Card.SubHeaderContentTemplate>
-            <material:Card.SupportingContentTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="0,1,0,0"
-                 BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}">
-                        <TextBlock Text="{Binding}"
-                       Margin="16,12,16,14"
-                       Style="{ThemeResource MaterialBody2}" />
-                    </Border>
-                </DataTemplate>
-            </material:Card.SupportingContentTemplate>
-            <material:Card.MediaContentTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding}"
-                Stretch="Uniform"
-                MaxHeight="94"
-                VerticalAlignment="Top" />
-                </DataTemplate>
-            </material:Card.MediaContentTemplate>
-        </material:Card>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+        <Viewbox VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock FontSize="44" Padding="30" FontWeight="Bold">
+                Wallet
+                </TextBlock>
+                <Grid Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource MaterialSecondaryFabStyle}" Grid.Row="0">
+                        <extensions:ControlExtensions.Icon xmlns:extensions="using:Uno.Material.Extensions">
+                            <SymbolIcon Symbol="Add" />
+                        </extensions:ControlExtensions.Icon>
+                    </Button>
+                    <TextBlock Grid.Row="1" FontSize="34" FontWeight="Bold" Foreground="White">
+                        Create a wallet
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" FontSize="24"  TextWrapping="Wrap" Foreground="White">
+                        Creating Lyra Wallet is free. Lyra wallet can send 
+                        and receive even create Tokens and NFT. 
+                    </TextBlock>
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Padding="20,10,20,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
+                        Already have a wallet?
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
+                </Grid>
+                <Grid Background="LightSlateGray" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="14">
+                        What is Lyra?
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" FontSize="14">
+                        [Images goes here]
+                    </TextBlock>
+
+                </Grid>
+                <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
+                More things
+                </TextBlock>
+                <Grid HorizontalAlignment="Stretch" Padding="20,10,20,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
+                        Feedback
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"><Bold>&gt;</Bold></TextBlock>                    
+                </Grid>
+                <StackPanel Background="LightGray" Height="1"></StackPanel>
+                <Grid HorizontalAlignment="Stretch" Padding="20,10,20,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
+                        Settings and support
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"><Bold>&gt;</Bold></TextBlock>
+                </Grid>
+                <StackPanel Background="LightGray" Height="1"></StackPanel>
+                <TextBlock Padding="20">
+                    Lyra Live
+                </TextBlock>
+                <TextBlock Padding="20" TextWrapping="Wrap" MaxWidth="500">
+                    We do not collect, hold, or store keys, account information, or password. We do not collect data passively, do not menetize the collection of data, and do not use your data for marketing or advertisting.
+                </TextBlock>
+            </StackPanel>
+        </Viewbox>
+
     </Grid>
 </Page>
