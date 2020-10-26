@@ -8,6 +8,46 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+        <material:Card HeaderContent="Elevated card"
+               SubHeaderContent="With small media and supporting content"
+               MediaContent="ms-appx:///Assets/SmallMedia.png"
+               SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+               Style="{StaticResource MaterialSmallMediaElevatedCardStyle}"
+               xmlns:material="using:Uno.Material.Controls">
+            <material:Card.HeaderContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                    MaxLines="1"
+                    Margin="16,14,16,0"
+                    Style="{ThemeResource MaterialHeadline6}" />
+                </DataTemplate>
+            </material:Card.HeaderContentTemplate>
+            <material:Card.SubHeaderContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                    MaxLines="2"
+                    Margin="16,0,16,14"
+                    Style="{ThemeResource MaterialBody2}" />
+                </DataTemplate>
+            </material:Card.SubHeaderContentTemplate>
+            <material:Card.SupportingContentTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="0,1,0,0"
+                 BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}">
+                        <TextBlock Text="{Binding}"
+                       Margin="16,12,16,14"
+                       Style="{ThemeResource MaterialBody2}" />
+                    </Border>
+                </DataTemplate>
+            </material:Card.SupportingContentTemplate>
+            <material:Card.MediaContentTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}"
+                Stretch="Uniform"
+                MaxHeight="94"
+                VerticalAlignment="Top" />
+                </DataTemplate>
+            </material:Card.MediaContentTemplate>
+        </material:Card>
     </Grid>
 </Page>

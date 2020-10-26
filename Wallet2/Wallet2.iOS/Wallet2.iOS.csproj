@@ -133,6 +133,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.8.8" />
     <PackageReference Include="ReduxSimple" Version="3.5.1" />
+    <PackageReference Include="Uno.Material">
+      <Version>1.0.0-dev.515</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI" Version="3.1.6" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.1.6" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />

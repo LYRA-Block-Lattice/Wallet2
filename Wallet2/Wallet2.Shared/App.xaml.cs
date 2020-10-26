@@ -70,8 +70,18 @@ namespace Wallet2
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            // Set a default palette to make sure all colors used by MaterialResources exist
+            this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
+
+            // Overlap the default colors with the application's colors palette. 
+            // TODO: Replace ms-appx:///Views/ColorPaletteOverride.xaml with your resourceDictionary.
+            this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/ColorPaletteOverride.xaml") });
+
+            // Add all the material resources. Those resources depend on the colors above, which is why this one must be added last.
+            this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialResources());
+
 #if DEBUG
-			if (System.Diagnostics.Debugger.IsAttached)
+            if (System.Diagnostics.Debugger.IsAttached)
 			{
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
@@ -106,7 +116,7 @@ namespace Wallet2
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(Form), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Windows.UI.Xaml.Window.Current.Activate();
