@@ -4,6 +4,8 @@
     <OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+	  <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\Wallet2.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />

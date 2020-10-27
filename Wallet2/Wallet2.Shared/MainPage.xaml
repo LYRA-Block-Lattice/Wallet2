@@ -5,6 +5,7 @@
     xmlns:local="using:Wallet2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:Uno.Material.Extensions"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
@@ -13,15 +14,15 @@
                 <TextBlock FontSize="44" Padding="30" FontWeight="Bold">
                 Wallet
                 </TextBlock>
-                <Grid Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="500">
+                <Grid Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource MaterialSecondaryFabStyle}" Grid.Row="0">
-                        <extensions:ControlExtensions.Icon xmlns:extensions="using:Uno.Material.Extensions">
+                    <Button Style="{StaticResource MaterialFabStyle}">
+                        <extensions:ControlExtensions.Icon>
                             <SymbolIcon Symbol="Add" />
                         </extensions:ControlExtensions.Icon>
                     </Button>
@@ -33,17 +34,17 @@
                         and receive even create Tokens and NFT. 
                     </TextBlock>
                 </Grid>
-                <Grid HorizontalAlignment="Stretch" Padding="20,10,20,10">
+                <Grid HorizontalAlignment="Stretch" Padding="20,4,20,30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0" FontSize="12" HorizontalAlignment="Left">
                         Already have a wallet?
                     </TextBlock>
-                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
                 </Grid>
-                <Grid Background="LightSlateGray" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="500">
+                <Grid Background="LightSlateGray" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
