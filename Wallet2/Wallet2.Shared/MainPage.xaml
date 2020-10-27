@@ -9,11 +9,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+        <CommandBar x:Name="CollapsibleCommandBar"
+					Content="Wallet" />
         <Viewbox VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock FontSize="44" Padding="30" FontWeight="Bold">
+                <!--<TextBlock FontSize="44" Padding="30" FontWeight="Bold">
                 Wallet
-                </TextBlock>
+                </TextBlock>-->
                 <Grid Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -21,7 +23,7 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource MaterialFabStyle}">
+                    <Button Style="{StaticResource MaterialFabStyle}" Click="Button_Click">
                         <extensions:ControlExtensions.Icon>
                             <SymbolIcon Symbol="Add" />
                         </extensions:ControlExtensions.Icon>

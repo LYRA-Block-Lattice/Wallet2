@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 using ReduxSimple;
 using System.Threading;
 using Windows.Storage;
+using Windows.UI.Core;
 
 namespace Wallet2
 {
@@ -28,6 +29,8 @@ namespace Wallet2
     /// </summary>
     sealed partial class App : Application
     {
+        private Frame _rootFrame;
+
         public static IServiceProvider ServiceProvider { get; set; }
 
         public static readonly ReduxStore<RootState> Store =
@@ -86,16 +89,18 @@ namespace Wallet2
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-            Frame rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
+            _rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (_rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                _rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                _rootFrame.NavigationFailed += OnNavigationFailed;
+                _rootFrame.Navigated += RootFrame_Navigated;
+                SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -103,12 +108,12 @@ namespace Wallet2
                 }
 
                 // Place the frame in the current Window
-                Windows.UI.Xaml.Window.Current.Content = rootFrame;
+                Windows.UI.Xaml.Window.Current.Content = _rootFrame;
             }
 
             if (e.PrelaunchActivated == false)
             {
-                if (rootFrame.Content == null)
+                if (_rootFrame.Content == null)
                 {
                     //ApplicationData.
 
@@ -116,11 +121,29 @@ namespace Wallet2
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    _rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Windows.UI.Xaml.Window.Current.Activate();
             }
+        }
+
+        private void App_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (_rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                _rootFrame.GoBack();
+            }
+        }
+
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = _rootFrame.BackStack.Any()
+                ? AppViewBackButtonVisibility.Visible
+                : AppViewBackButtonVisibility.Collapsed;
+
+            //Analytics.ReportPageView(e);
         }
 
         /// <summary>
