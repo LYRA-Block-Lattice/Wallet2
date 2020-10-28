@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyStringToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntToMod4DefaultValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SampleGroupTypeToColorBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Form.xaml.cs">
       <DependentUpon>Form.xaml</DependentUpon>
     </Compile>

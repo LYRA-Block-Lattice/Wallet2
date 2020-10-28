@@ -22,22 +22,22 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Wallet2
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        public MainPage()
-        {
-            this.InitializeComponent();
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class MainPage : Page
+	{
+		public MainPage()
+		{
+			this.InitializeComponent();
 
 			Loaded += SamplesPage_Loaded;
 		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(WalletBeforeCreate));
-        }
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(WalletBeforeCreate));
+		}
 
 		#region CollapsibleCommandBar
 
@@ -55,13 +55,14 @@ namespace Wallet2
 					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
 					() =>
 					{
+						Bindings.Update();
 						if (App.Store.State.wallet != null)
 						{
 							createNewWallet.Visibility = Visibility.Collapsed;
 							mainWallet.Visibility = Visibility.Visible;
 						}
 						else
-                        {
+						{
 							createNewWallet.Visibility = Visibility.Visible;
 							mainWallet.Visibility = Visibility.Collapsed;
 						}
@@ -122,5 +123,14 @@ namespace Wallet2
 		}
 
 		#endregion
+
+		private void Receive(object sender, RoutedEventArgs e)
+		{
+			var oAct = new WalletRefreshBalanceAction
+			{
+				wallet = App.Store.State.wallet
+			};
+			_ = Task.Run(() => { App.Store.Dispatch(oAct); });
+		}
 	}
 }

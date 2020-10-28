@@ -6,7 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:extensions="using:Uno.Material.Extensions"
+    xmlns:converters="using:Wallet2.Shared.Converters"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
         <Grid.RowDefinitions>
@@ -31,18 +36,30 @@
                     <TextBlock FontSize="16" FontWeight="Bold" Foreground="White">
                             My main account
                     </TextBlock>
-                    <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White">
-                        Lsiengsepr2934l12j3..sdf
-                    </TextBlock>
-                    <TextBlock Grid.Row="2" FontSize="34" FontWeight="Bold" Padding="0,30,0,30" Foreground="White">
+                    <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White"
+                               Text="{x:Bind local:App.Store.State.wallet.AccountId}" />
+
+                    <TextBlock Grid.Row="2" FontSize="34" FontWeight="Bold" Padding="0,20,0,20" Foreground="White">
                         $ 0.00 &gt;
                     </TextBlock>
-                    <TextBlock Grid.Row="3" FontSize="24"  TextWrapping="Wrap" Foreground="White">
-                        0 LYR
-                    </TextBlock>
-                    <TextBlock Grid.Row="4" FontSize="24"  TextWrapping="Wrap" Foreground="White">
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="24"  TextWrapping="Wrap" Foreground="White"
+                               Text="{x:Bind local:App.Store.State.wallet.MainBalance,Mode=OneWay,Converter={StaticResource StringFormatConverter},ConverterParameter='\{0\} LYR'}"
+                               />                        
+                        <TextBlock Grid.Row="1" Grid.Column="0"  FontSize="24"  TextWrapping="Wrap" Foreground="White">
                         and no tokens
-                    </TextBlock>
+                        </TextBlock>
+                        <Button Content="R" Grid.Column="1" Grid.RowSpan="2" Click="Receive" />
+                    </Grid>
                 </Grid>
                 <Grid x:Name="createNewWallet" Visibility="Collapsed" Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                     <Grid.RowDefinitions>

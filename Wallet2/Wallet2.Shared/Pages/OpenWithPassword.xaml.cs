@@ -34,27 +34,26 @@ namespace Wallet2.Shared.Pages
             this.InitializeComponent();
 
             _settings = new WalletCreateSettings();
-            this.DataContext = _settings;
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             // redux
-            _ = App.Store.Select(state => state.IsChanged)
+            _ = App.Store.Select(state => state.wallet)
                 .Subscribe(async w =>
                 {
                     await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                     () =>
                     {
-                        if (App.Store.State.wallet != null)
+                        if (w != null)
                         {
                             Frame.Navigate(typeof(MainPage));
                         }
-                        //else
-                        //{
-                        //    var messageDialog = new MessageDialog(App.Store.State?.ErrorMessage?? "Wrong password", "Failed to open wallet");
-                        //    _ = messageDialog.ShowAsync();
-                        //}
+                        else
+                        {
+                            //notification.Show("Wrong Password", 3000);
+                            //ExampleVSCodeInAppNotification.Show();
+                        }
                     }
                     );
                 });
