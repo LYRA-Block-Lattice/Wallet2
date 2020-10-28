@@ -1,0 +1,27 @@
+﻿<ContentDialog
+    x:Class="Wallet2.Shared.Pages.ResetWalletDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wallet2.Shared.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Forgot Password?"
+    PrimaryButtonText="Yes, reset wallet"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+	<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock>
+            Unfortunately, as we mentioned when you were creating a password, there's no "Restore Password" button,
+            however, if you created a backup for your wallet, you can restore your wallet using a backup passphrase
+            and set a new password once it's restored.
+        </TextBlock>
+        <CheckBox Grid.Row="1" Name="chkRisk" Style="{StaticResource MaterialCheckBoxStyle}"
+                  Padding="0,30,0,30" Checked="RiskChecked" Unchecked="RiskUnChecked"
+             Content="Yes, I know all risks." />
+	</Grid>
+</ContentDialog>

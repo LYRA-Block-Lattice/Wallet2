@@ -60,6 +60,11 @@ namespace Wallet2
 							createNewWallet.Visibility = Visibility.Collapsed;
 							mainWallet.Visibility = Visibility.Visible;
 						}
+						else
+                        {
+							createNewWallet.Visibility = Visibility.Visible;
+							mainWallet.Visibility = Visibility.Collapsed;
+						}
 					}
 					);
 				});

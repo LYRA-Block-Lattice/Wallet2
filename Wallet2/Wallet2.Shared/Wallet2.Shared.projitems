@@ -34,6 +34,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\OpenWithPassword.xaml.cs">
       <DependentUpon>OpenWithPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ResetWalletDialog.xaml.cs">
+      <DependentUpon>ResetWalletDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletBeforeCreate.xaml.cs">
       <DependentUpon>WalletBeforeCreate.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\OpenWithPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\ResetWalletDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

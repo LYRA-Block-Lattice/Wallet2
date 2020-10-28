@@ -62,7 +62,7 @@ namespace Wallet2.Shared.Pages
             var pwd = password.Password;
             _ = Task.Run(() =>
             {
-                
+
                 var oAct = new WalletOpenAction
                 {
                     path = Windows.Storage.ApplicationData.Current.LocalFolder.Path,
@@ -71,6 +71,44 @@ namespace Wallet2.Shared.Pages
                 };
                 App.Store.Dispatch(oAct);
             });
+        }
+
+        private async void ForgotPassword(object sender, RoutedEventArgs e)
+        {
+            var dialog1 = new ResetWalletDialog();
+            var result = await dialog1.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var messageDialog = new MessageDialog("Don't reset if you didn't make a backup, as there will be no way to restore your account after that.", "Warning: You can lose your account and funds forever");
+                var confirm = await messageDialog.ShowAsync();
+
+                MessageDialog dialog = new MessageDialog("Yes or no?");
+                dialog.Commands.Add(new UICommand("Yes", null));
+                dialog.Commands.Add(new UICommand("No", null));
+                dialog.DefaultCommandIndex = 0;
+                dialog.CancelCommandIndex = 1;
+                var cmd = await dialog.ShowAsync();
+
+                if (cmd.Label == "Yes")
+                {
+                    var dataPath = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                    _ = Task.Run(() => {
+                        App.Store.Dispatch(new WalletRemoveAction
+                        {
+                            path = dataPath,
+                            name = "default"
+                        });
+                    });
+
+                    var fn = $"{dataPath}/default.lyrawallet";
+                    while (File.Exists(fn))
+                    {
+                        await Task.Delay(100);
+                    }
+
+                    Frame.Navigate(typeof(MainPage));
+                }
+            }
         }
     }
 }
