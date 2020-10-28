@@ -29,6 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\WalletCreateSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletBeforeCreate.xaml.cs">
       <DependentUpon>WalletBeforeCreate.xaml</DependentUpon>
     </Compile>
@@ -37,6 +39,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletCreatePassword.xaml.cs">
       <DependentUpon>WalletCreatePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletCreating.xaml.cs">
+      <DependentUpon>WalletCreating.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletRepeatPassword.xaml.cs">
       <DependentUpon>WalletRepeatPassword.xaml</DependentUpon>
@@ -80,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\WalletCreatePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\WalletCreating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,5 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\lyracoin.png" />
   </ItemGroup>
 </Project>

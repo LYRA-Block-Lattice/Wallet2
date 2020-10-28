@@ -16,20 +16,30 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <!-- Header -->
-        <CommandBar Content="Create Wallet 101"
+        <CommandBar Grid.Row="0" Content="Create Wallet 101"
 					/>
         <StackPanel Grid.Row="1">
-            <TextBlock FontSize="34" FontWeight="Bold" Foreground="White">
-                Wallet Safty
+            <TextBlock FontSize="20" TextWrapping="Wrap">
+                In crypto you are your own bank.
             </TextBlock>
-            <TextBlock FontSize="20"  TextWrapping="Wrap" Foreground="White">
+        </StackPanel>
+        <StackPanel Grid.Row="2">         
+            <TextBlock FontSize="34" FontWeight="Bold">
+                Wallet Safety
+            </TextBlock>
+            <TextBlock FontSize="20"  TextWrapping="Wrap">
                 Keep private key in safe.
             </TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="2">
-            <Button Content="CONTAINED"
+        <StackPanel Grid.Row="3">
+            <Button Content="Crate a Wallet"
                 Style="{StaticResource MaterialContainedButtonStyle}"
                 Click="Create_Click"
+                    />
+            <StackPanel Background="LightGray" Height="1" Padding="10"></StackPanel>
+            <Button Content="Crate a Testnet Wallet"
+                Style="{StaticResource MaterialContainedButtonStyle}"
+                Click="CreateTestnet_Click"
                     />
         </StackPanel>
     </Grid>
