@@ -9,14 +9,42 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <CommandBar x:Name="CollapsibleCommandBar"
 					Content="Wallet" />
-        <Viewbox VerticalAlignment="Top">
+        <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <!--<TextBlock FontSize="44" Padding="30" FontWeight="Bold">
                 Wallet
                 </TextBlock>-->
-                <Grid Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
+                <Grid x:Name="mainWallet" Visibility="Collapsed" Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="White">
+                            My main account
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White">
+                        Lsiengsepr2934l12j3..sdf
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" FontSize="34" FontWeight="Bold" Padding="0,30,0,30" Foreground="White">
+                        $ 0.00 &gt;
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" FontSize="24"  TextWrapping="Wrap" Foreground="White">
+                        0 LYR
+                    </TextBlock>
+                    <TextBlock Grid.Row="4" FontSize="24"  TextWrapping="Wrap" Foreground="White">
+                        and no tokens
+                    </TextBlock>
+                </Grid>
+                <Grid x:Name="createNewWallet" Visibility="Collapsed" Background="DarkCyan" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -91,7 +119,6 @@
                     We do not collect, hold, or store keys, account information, or password. We do not collect data passively, do not menetize the collection of data, and do not use your data for marketing or advertisting.
                 </TextBlock>
             </StackPanel>
-        </Viewbox>
-
+        </ScrollViewer>
     </Grid>
 </Page>

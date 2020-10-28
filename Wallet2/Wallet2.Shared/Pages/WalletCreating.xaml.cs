@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Wallet2.Shared.Models;
+using System.Threading;
+using LyraWallet.States;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,6 +27,8 @@ namespace Wallet2.Shared.Pages
     public sealed partial class WalletCreating : Page
     {
         private WalletCreateSettings _settings;
+        private CancellationTokenSource _cancel;
+
         public WalletCreating()
         {
             this.InitializeComponent();
@@ -32,6 +37,42 @@ namespace Wallet2.Shared.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _settings = e.Parameter as WalletCreateSettings;
+
+            _cancel = new CancellationTokenSource();
+            // redux
+            App.Store.Select(state => state)
+                .Subscribe(w =>
+                {
+                    //Device.BeginInvokeOnMainThread(async () =>
+                    //{
+                    //    UserDialogs.Instance.HideLoading();
+
+                    if (w.IsOpening)
+                    {
+                        _cancel.Cancel();
+                        App.WalletSubscribeCancellation = new CancellationTokenSource();
+                        //App.Current.MainPage = new AppShell();
+                    }
+                    else if (w.ErrorMessage != null)
+                    {
+
+
+                    }
+                    //await DisplayAlert("Warnning", "Wallet creation or restore failed.\n\n" + w.ErrorMessage, "Confirm");
+                    //});
+                }, _cancel.Token);
+
+            // create or restore then goto appshell
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            var oAct = new WalletCreateAction
+            {
+                network = _settings.network,
+                name = "default",
+                password = _settings.password,
+                path = localFolder.Path
+            };
+
+            _ = Task.Run(() => { App.Store.Dispatch(oAct); });
 
             base.OnNavigatedTo(e);
         }

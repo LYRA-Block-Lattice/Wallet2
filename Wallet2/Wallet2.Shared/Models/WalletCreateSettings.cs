@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Wallet2.Shared.Models
 {
+    [Windows.UI.Xaml.Data.Bindable]
     public class WalletCreateSettings : BaseViewModel
     {
         string _network = string.Empty;

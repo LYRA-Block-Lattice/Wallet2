@@ -21,6 +21,7 @@ using ReduxSimple;
 using System.Threading;
 using Windows.Storage;
 using Windows.UI.Core;
+using Wallet2.Shared.Pages;
 
 namespace Wallet2
 {
@@ -117,11 +118,16 @@ namespace Wallet2
                 {
                     //ApplicationData.
 
+                    Type typEntry;
+                    if (App.Store.State?.IsOpening ?? false)
+                        typEntry = typeof(MainPage);
+                    else
+                        typEntry = typeof(OpenWithPassword);
 
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    _rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    _rootFrame.Navigate(typEntry, e.Arguments);
                 }
                 // Ensure the current window is active
                 Windows.UI.Xaml.Window.Current.Activate();
@@ -139,9 +145,9 @@ namespace Wallet2
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = _rootFrame.BackStack.Any()
-                ? AppViewBackButtonVisibility.Visible
-                : AppViewBackButtonVisibility.Collapsed;
+            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = _rootFrame.BackStack.Any()
+            //    ? AppViewBackButtonVisibility.Visible
+            //    : AppViewBackButtonVisibility.Collapsed;
 
             //Analytics.ReportPageView(e);
         }

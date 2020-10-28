@@ -1,8 +1,10 @@
-﻿using System;
+﻿using LyraWallet.States;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Wallet2.Shared.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -44,15 +46,23 @@ namespace Wallet2
 
 		private void SamplesPage_Loaded(object sender, RoutedEventArgs e)
 		{
-			var scrollViewer = GetDescendants(this).OfType<ScrollViewer>().FirstOrDefault();
-			if (scrollViewer != null)
-			{
-				scrollViewer.ViewChanged -= ScrollViewer_ViewChanged;
-				scrollViewer.ViewChanged += ScrollViewer_ViewChanged;
-			}
-
-			Frame?.BackStack?.Clear();
-			SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+			//Frame?.BackStack?.Clear();
+			//SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+			// redux
+			_ = App.Store.Select(state => state.IsChanged)
+				.Subscribe(async w =>
+				{
+					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+					() =>
+					{
+						if (App.Store.State.wallet != null)
+						{
+							createNewWallet.Visibility = Visibility.Collapsed;
+							mainWallet.Visibility = Visibility.Visible;
+						}
+					}
+					);
+				});
 		}
 
 		private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
