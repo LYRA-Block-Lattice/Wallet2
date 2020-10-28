@@ -26,5 +26,10 @@ namespace Wallet2.Shared.Pages
         {
             this.InitializeComponent();
         }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }
