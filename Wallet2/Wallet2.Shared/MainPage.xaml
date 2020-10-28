@@ -11,6 +11,7 @@
 
     <Page.Resources>
         <converters:StringFormatConverter x:Key="StringFormatConverter" />
+        <converters:BalanceConverter x:Key="BalanceConverter" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
@@ -52,9 +53,10 @@
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="24"  TextWrapping="Wrap" Foreground="White"
-                               Text="{x:Bind local:App.Store.State.wallet.MainBalance,Mode=OneWay,Converter={StaticResource StringFormatConverter},ConverterParameter='\{0\} LYR'}"
-                               />                        
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="24"  TextWrapping="Wrap" Foreground="White" >
+                            <Run Text="{x:Bind local:App.Store.State.wallet.MainBalance,Mode=OneWay,Converter={StaticResource BalanceConverter}}" />
+                            <Run Text=" LYR" />
+                        </TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="0"  FontSize="24"  TextWrapping="Wrap" Foreground="White">
                         and no tokens
                         </TextBlock>
