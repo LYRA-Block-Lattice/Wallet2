@@ -79,17 +79,14 @@ namespace Wallet2.Shared.Pages
             var result = await dialog1.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                var messageDialog = new MessageDialog("Don't reset if you didn't make a backup, as there will be no way to restore your account after that.", "Warning: You can lose your account and funds forever");
-                var confirm = await messageDialog.ShowAsync();
-
-                MessageDialog dialog = new MessageDialog("Yes or no?");
-                dialog.Commands.Add(new UICommand("Yes", null));
+                var dialog = new MessageDialog("Don't reset if you didn't make a backup, as there will be no way to restore your account after that.", "Warning: You can lose your account and funds forever");
+                dialog.Commands.Add(new UICommand("Yes, reset wallet", null));
                 dialog.Commands.Add(new UICommand("No", null));
                 dialog.DefaultCommandIndex = 0;
                 dialog.CancelCommandIndex = 1;
                 var cmd = await dialog.ShowAsync();
 
-                if (cmd.Label == "Yes")
+                if (cmd.Label == "Yes, reset wallet")
                 {
                     var dataPath = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
                     _ = Task.Run(() => {

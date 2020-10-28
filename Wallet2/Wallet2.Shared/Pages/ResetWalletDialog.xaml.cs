@@ -31,12 +31,12 @@ namespace Wallet2.Shared.Pages
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
         }
-        private async void RiskChecked(object sender, RoutedEventArgs e)
+        private void RiskChecked(object sender, RoutedEventArgs e)
         {
             IsPrimaryButtonEnabled = true;
         }
 
-        private async void RiskUnChecked(object sender, RoutedEventArgs e)
+        private void RiskUnChecked(object sender, RoutedEventArgs e)
         {
             IsPrimaryButtonEnabled = false;
         }

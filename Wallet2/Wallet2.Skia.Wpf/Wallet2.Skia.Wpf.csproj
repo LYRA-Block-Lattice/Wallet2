@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.515" />
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.191.gc988bdd4ff" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.1.6" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UI.Skia.Wpf" Version="3.2.0-dev.256" />
   </ItemGroup>
