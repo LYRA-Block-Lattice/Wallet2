@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Wallet2.Shared.Pages;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -137,5 +138,21 @@ namespace Wallet2
 		{
 			Frame.Navigate(typeof(WalletSettings));
 		}
+
+		private void CopyAddr (object sender, RoutedEventArgs e)
+		{
+			var dataPackage = new DataPackage();
+			dataPackage.RequestedOperation = DataPackageOperation.Copy;
+			dataPackage.SetText((sender as TextBlock).Text);
+			Clipboard.SetContent(dataPackage);
+		}
+
+		private string GetDollarWorth()
+        {
+			if (App.Store.State.wallet == null)
+				return "0.00";
+			else
+				return $"{(decimal)((double)App.Store.State.wallet.MainBalance / 100000000 * 0.0026)}";
+        }
 	}
 }

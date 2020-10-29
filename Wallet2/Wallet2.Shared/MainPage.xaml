@@ -7,17 +7,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:extensions="using:Uno.Material.Extensions"
     xmlns:converters="using:Wallet2.Shared.Converters"
+    xmlns:styls="using:Wallet2.Shared."
+    xmlns:material="using:Uno.Material.Controls"
+    xmlns:controls="using:Uno.Material.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
         <converters:StringFormatConverter x:Key="StringFormatConverter" />
         <converters:BalanceConverter x:Key="BalanceConverter" />
+        
+        <Style x:Key="MaterialBottomNavigationBarStyle"
+		   TargetType="controls:BottomNavigationBar">
+
+            <Setter Property="Background"
+				Value="DarkCyan" />
+            <Setter Property="Foreground"
+				Value="{StaticResource MaterialBottomNavForegroundBrush}" />
+            <Setter Property="Height"
+				Value="64" />
+            <Setter Property="VerticalAlignment"
+				Value="Bottom" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:BottomNavigationBar">
+                        <Grid x:Name="PART_LayoutRoot"
+						  Height="64"
+						  Background="{TemplateBinding Background}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="controls:BottomNavigationBar"
+		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />
+        
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="65" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
         <CommandBar x:Name="CollapsibleCommandBar"
 					Content="Wallet" />
@@ -38,10 +70,12 @@
                             My main account
                     </TextBlock>
                     <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White"
+                               Tapped="CopyAddr"
                                Text="{x:Bind local:App.Store.State.wallet.AccountId}" />
 
                     <TextBlock Grid.Row="2" FontSize="34" FontWeight="Bold" Padding="0,20,0,20" Foreground="White">
-                        $ 0.00 &gt;
+                        <Run Text="$ " />
+                        <Run Text="{x:Bind GetDollarWorth()}" />
                     </TextBlock>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
@@ -141,5 +175,41 @@
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>
+        <StackPanel Grid.Row="2" Background="Aquamarine">
+            <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
+                <material:BottomNavigationBar.Items>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Home" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Sync" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Emoji2" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Flag" />
+                        </material:BottomNavigationBarItem.Icon>
+                        <material:BottomNavigationBarItem.Badge>
+                            <entities:BottomNavigationBarBadge IsVisible="True"
+                                                  Text="3"
+                                                  xmlns:entities="using:Uno.Material.Entities" />
+                        </material:BottomNavigationBarItem.Badge>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Setting" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                </material:BottomNavigationBar.Items>
+            </material:BottomNavigationBar>
+        </StackPanel>
     </Grid>
 </Page>
