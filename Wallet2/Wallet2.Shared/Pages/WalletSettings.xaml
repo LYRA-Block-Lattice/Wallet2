@@ -5,12 +5,19 @@
     xmlns:local="using:Wallet2.Shared.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <StackPanel>
-            <CheckBox Grid.Row="1" Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
+    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <CommandBar Content="Settings" />
+        <StackPanel Grid.Row="1">
+            <CheckBox Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
                   Padding="0,30,0,30" Checked="DevChecked" Unchecked="DevUnChecked"
              Content="Developer's Mode" />
         </StackPanel>

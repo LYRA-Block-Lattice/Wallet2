@@ -88,34 +88,34 @@ namespace Wallet2
 			//UpdateCollapsibleCommandBar(scrollViewer.VerticalOffset);
 		}
 
-		private void UpdateCollapsibleCommandBar(bool shouldExpand)
-		{
-			// We can't simply use Visibility.Collapsed on the CommandBar 
-			// because it would break the navigation transition on iOS.
+		//private void UpdateCollapsibleCommandBar(bool shouldExpand)
+		//{
+		//	// We can't simply use Visibility.Collapsed on the CommandBar 
+		//	// because it would break the navigation transition on iOS.
 
-			//var shouldExpand = verticalOffset > CollapsibleCommandBarScrollThreshold;
-			//if (shouldExpand == _isExpanded)
-			//{
-			//	return;
-			//}
+		//	//var shouldExpand = verticalOffset > CollapsibleCommandBarScrollThreshold;
+		//	//if (shouldExpand == _isExpanded)
+		//	//{
+		//	//	return;
+		//	//}
 
-			if (shouldExpand)
-			{
-				CollapsibleCommandBar.IsHitTestVisible = true;
-				CollapsibleCommandBar.Opacity = 1;
-				CollapsibleCommandBar.Foreground = new SolidColorBrush(Colors.Black);
-				CollapsibleCommandBar.Background = new SolidColorBrush(Colors.White);
-			}
-			else
-			{
-				CollapsibleCommandBar.IsHitTestVisible = false;
-				CollapsibleCommandBar.Opacity = 0;
-				CollapsibleCommandBar.Foreground = new SolidColorBrush(Colors.Transparent);
-				CollapsibleCommandBar.Background = new SolidColorBrush(Colors.Transparent);
-			}
+		//	if (shouldExpand)
+		//	{
+		//		CollapsibleCommandBar.IsHitTestVisible = true;
+		//		CollapsibleCommandBar.Opacity = 1;
+		//		CollapsibleCommandBar.Foreground = new SolidColorBrush(Colors.Black);
+		//		CollapsibleCommandBar.Background = new SolidColorBrush(Colors.White);
+		//	}
+		//	else
+		//	{
+		//		CollapsibleCommandBar.IsHitTestVisible = false;
+		//		CollapsibleCommandBar.Opacity = 0;
+		//		CollapsibleCommandBar.Foreground = new SolidColorBrush(Colors.Transparent);
+		//		CollapsibleCommandBar.Background = new SolidColorBrush(Colors.Transparent);
+		//	}
 
-			_isExpanded = shouldExpand;
-		}
+		//	_isExpanded = shouldExpand;
+		//}
 
 		private static IEnumerable<DependencyObject> GetChildren(DependencyObject reference)
 		{

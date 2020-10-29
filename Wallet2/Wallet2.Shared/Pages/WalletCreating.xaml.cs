@@ -79,7 +79,6 @@ namespace Wallet2.Shared.Pages
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            Frame.BackStack.Clear();
             Frame.Navigate(typeof(MainPage));
         }
     }

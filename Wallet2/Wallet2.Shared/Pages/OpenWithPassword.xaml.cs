@@ -47,7 +47,6 @@ namespace Wallet2.Shared.Pages
                     {
                         if (w != null)
                         {
-                            Frame.BackStack.Clear();
                             Frame.Navigate(typeof(MainPage));
                         }
                         else
@@ -103,7 +102,6 @@ namespace Wallet2.Shared.Pages
                         await Task.Delay(100);
                     }
 
-                    Frame.BackStack.Clear();
                     Frame.Navigate(typeof(MainPage));
                 }
             }

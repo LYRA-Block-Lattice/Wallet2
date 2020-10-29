@@ -30,7 +30,12 @@
 	<xamarin:Style BasedOn="{StaticResource XamlDefaultToggleSwitch}"
 				   TargetType="ToggleSwitch" />
 
-	<Style x:Key="iOSToggleSwitchStyle"
+    <Style TargetType="CommandBar" BasedOn="{StaticResource NativeDefaultCommandBar}">    
+        <Setter Property="toolkit:VisibleBoundsPadding.PaddingMask"
+            Value="Top" />
+    </Style>
+    
+    <Style x:Key="iOSToggleSwitchStyle"
 		   TargetType="ToggleSwitch">
 		<Setter Property="Foreground"
 				Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />

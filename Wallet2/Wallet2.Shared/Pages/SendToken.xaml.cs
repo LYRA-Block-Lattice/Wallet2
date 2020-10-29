@@ -52,7 +52,6 @@ namespace Wallet2.Shared.Pages
 
             _ = Task.Run(() => { App.Store.Dispatch(moAct); });
 
-            Frame.BackStack.Clear();
             Frame.Navigate(typeof(MainPage));
         }
 

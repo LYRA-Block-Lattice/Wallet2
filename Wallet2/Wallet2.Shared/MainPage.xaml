@@ -9,6 +9,7 @@
     xmlns:converters="using:Wallet2.Shared.Converters"
     xmlns:material="using:Uno.Material.Controls"
     xmlns:controls="using:Uno.Material.Controls"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -43,16 +44,15 @@
         
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          VerticalAlignment="Stretch">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="All"
+          VerticalAlignment="Stretch" Padding="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
-        <CommandBar x:Name="CollapsibleCommandBar"
-					Content="Wallet" />
-        <ScrollViewer Grid.Row="1">
+
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
                 <!--<TextBlock FontSize="44" Padding="30" FontWeight="Bold">
                 Wallet

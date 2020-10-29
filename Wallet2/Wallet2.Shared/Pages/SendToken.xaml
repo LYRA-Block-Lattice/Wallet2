@@ -5,15 +5,16 @@
     xmlns:local="using:Wallet2.Shared.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="50"/>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -22,8 +23,9 @@
             <ColumnDefinition />
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
+        
         <CommandBar Grid.Row="0" Grid.ColumnSpan="3" x:Name="CollapsibleCommandBar"
-					Content="Wallet" />
+					Content="Send Funds" />
 
         <StackPanel Grid.Row="1" Grid.Column="0" Padding="5" VerticalAlignment="Center">
             <Button Background="Tomato" VerticalAlignment="Center" 
