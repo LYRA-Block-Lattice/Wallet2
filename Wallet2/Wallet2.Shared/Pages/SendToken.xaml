@@ -24,42 +24,56 @@
         </Grid.ColumnDefinitions>
         <CommandBar Grid.Row="0" Grid.ColumnSpan="3" x:Name="CollapsibleCommandBar"
 					Content="Wallet" />
-        
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="To:" FontSize="20" 
-                   HorizontalAlignment="Right" VerticalAlignment="Center" />
-        <StackPanel Grid.Row="1" Grid.Column="1" Padding="5">
-            <TextBox Height="32" VerticalAlignment="Center" PlaceholderText="To Wallet Address"/>
-        </StackPanel>
-        <Button Grid.Row="1" Grid.Column="2" Background="White"                
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Padding="5" VerticalAlignment="Center">
+            <Button Background="Tomato" VerticalAlignment="Center" 
+                    CornerRadius="10"
                                 Click="Scan_Click" >
-            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xED14;"/>
-        </Button>
-        <StackPanel Grid.Row="2" Grid.Column="0" Padding="5">
-            <Image 
+                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xED14;"/>
+            </Button>
+        </StackPanel>
+        
+
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="5" VerticalAlignment="Center">
+            <TextBox Height="32" VerticalAlignment="Center" 
+                     Text="{x:Bind toAddress, Mode=TwoWay}"
+                     PlaceholderText="To Wallet Address"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Padding="5" VerticalAlignment="Center" >
+            <Image
                Source="ms-appx:///Assets/lyracoin.png"
                                Stretch="Uniform"
 		               HorizontalAlignment="Center"
 		               VerticalAlignment="Center"/>
         </StackPanel>
-        <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"
-              ItemsSource="{Binding Tokens}"
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Padding="5" VerticalAlignment="Center" >
+            <ComboBox VerticalAlignment="Center" Padding="5"
+              ItemsSource="{x:Bind tokens}"
               x:Name="Tokens" Width="180"
-              SelectedItem="{Binding SelectedToken, Mode=TwoWay}" />
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBlock Text="2000 LYR" />
-            <TextBlock Grid.Row="1" Text="$10.56" />
+                      PlaceholderText=" Select Token to send"
+              SelectedItem="{x:Bind selectedToken, Mode=TwoWay}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+            <TextBlock Text="2000 LYR" FontSize="12" />
+            <TextBlock Grid.Row="1" Text="$10.56" FontSize="12"  />
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="64" Width="200" VerticalAlignment="Center" 
                          FontSize="48"
                          FontStretch="Expanded"
-                         PlaceholderText="Amount" />
-                <TextBlock FontSize="64" VerticalAlignment="Center">
-                    <Run Text=" LYR" FontSize="32" />
+                         TextAlignment="Right"
+                         Text="{x:Bind amountString, Mode=TwoWay}"
+                         PlaceholderText="0" />
+                <TextBlock FontSize="64" VerticalAlignment="Bottom">
+                    <Run Text=" LYR" FontSize="24" />
                 </TextBlock>
             </StackPanel>
-            <TextBlock Text="$0.0026" />
+            <TextBlock Text="$0.0026" HorizontalAlignment="Right" />
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3">
             <TextBlock Text="Fee: 1 LYR" />
