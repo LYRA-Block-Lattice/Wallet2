@@ -134,6 +134,11 @@ namespace Wallet2
 			_ = Task.Run(() => { App.Store.Dispatch(oAct); });
 		}
 
+		private void Send(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(SendToken));
+		}
+
 		private void GoSettings(object sender, RoutedEventArgs e)
 		{
 			Frame.Navigate(typeof(WalletSettings));
