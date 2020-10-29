@@ -25,13 +25,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SampleGroupTypeToColorBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BalanceConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Form.xaml.cs">
-      <DependentUpon>Form.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\WalletSendSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalletCreateSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\OpenWithPassword.xaml.cs">
       <DependentUpon>OpenWithPassword.xaml</DependentUpon>
@@ -60,9 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletSettings.xaml.cs">
       <DependentUpon>WalletSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Samples\Homies.xaml.cs">
-      <DependentUpon>Homies.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)States\Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Effects.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Reducers.cs" />
@@ -75,10 +70,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)DefaultStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,10 +114,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\WalletSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Samples\Homies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,5 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\lyracoin.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\lyraicon50x50.png" />
   </ItemGroup>
 </Project>

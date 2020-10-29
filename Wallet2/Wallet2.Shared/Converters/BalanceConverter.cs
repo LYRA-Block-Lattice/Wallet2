@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Data;
+using Wallet2;
 
 namespace Wallet2.Shared.Converters
 {

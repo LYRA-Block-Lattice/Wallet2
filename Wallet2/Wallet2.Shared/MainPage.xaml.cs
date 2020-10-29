@@ -28,6 +28,9 @@ namespace Wallet2
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
+		string accountId = string.Empty;
+		string mainBalance = string.Empty;
+
 		public MainPage()
 		{
 			this.InitializeComponent();
@@ -56,7 +59,14 @@ namespace Wallet2
 					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
 					() =>
 					{
-						Bindings.Update();
+						if(App.Store.State.IsOpening)
+                        {
+							accountId = App.Store.State.wallet?.AccountId;
+							mainBalance = $"{GetMainBalance()}";
+
+							Bindings.Update();
+						}
+
                         if (App.Store.State.wallet != null)
                         {
                             createNewWallet.Visibility = Visibility.Collapsed;
@@ -152,12 +162,16 @@ namespace Wallet2
 			Clipboard.SetContent(dataPackage);
 		}
 
+		private double GetMainBalance()
+        {
+			return (double)App.Store.State.wallet.MainBalance / 100000000;
+		}
 		private string GetDollarWorth()
         {
 			if (App.Store.State.wallet == null)
 				return "0.00";
 			else
-				return $"{(decimal)((double)App.Store.State.wallet.MainBalance / 100000000 * 0.0026)}";
+				return $"{GetMainBalance() * 0.0026}";
         }
 	}
 }

@@ -28,7 +28,7 @@ namespace Wallet2.Shared.Pages
             this.InitializeComponent();
 
             var localSettings = ApplicationData.Current.LocalSettings;
-            bool v = "ture" == localSettings.Values["devmode"].ToString();
+            bool v = "ture" == localSettings.Values["devmode"]?.ToString();
             chkDev.IsChecked = v;
         }
 

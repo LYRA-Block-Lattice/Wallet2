@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,14 +26,14 @@ namespace Wallet2.Shared.Pages
     public sealed partial class SendToken : Page
     {
         List<string> tokens;
-        string selectedToken;
-        string toAddress;
-        string amountString;
+        WalletSendSettings settings;
 
         public SendToken()
         {
             this.InitializeComponent();
 
+            settings = new WalletSendSettings();
+            DataContext = settings;
             tokens = App.Store.State.wallet.GetLatestBlock()?.Balances?.Keys.ToList();
         }
 
@@ -42,15 +43,16 @@ namespace Wallet2.Shared.Pages
 
             var moAct = new WalletSendTokenAction
             {
-                DstAddr = toAddress,
-                Amount = decimal.Parse(amountString),
-                TokenName = selectedToken,
+                DstAddr = txtAddr.Text,
+                Amount = decimal.Parse(txtAmount.Text),
+                TokenName = settings.selectedToken,
                 wallet = App.Store.State.wallet
             };
             //var mtxt = "Transfering funds...";
 
             _ = Task.Run(() => { App.Store.Dispatch(moAct); });
 
+            Frame.BackStack.Clear();
             Frame.Navigate(typeof(MainPage));
         }
 

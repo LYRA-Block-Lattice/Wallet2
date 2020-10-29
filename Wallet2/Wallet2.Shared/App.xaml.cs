@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Uno.UI.Demo.Samples;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -147,7 +146,7 @@ namespace Wallet2
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
             var view = SystemNavigationManager.GetForCurrentView();
-            if (_rootFrame.CurrentSourcePageType.Name == "MainPage")
+            if (_rootFrame.CurrentSourcePageType?.Name == "MainPage")
                 view.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             else
             {

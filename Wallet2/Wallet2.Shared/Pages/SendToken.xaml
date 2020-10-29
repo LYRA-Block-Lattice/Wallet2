@@ -37,13 +37,14 @@
         
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="5" VerticalAlignment="Center">
             <TextBox Height="32" VerticalAlignment="Center" 
-                     Text="{x:Bind toAddress, Mode=TwoWay}"
+                     x:Name="txtAddr"
+                     Text="{x:Bind settings.toAddress, Mode=TwoWay}"
                      PlaceholderText="To Wallet Address"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Padding="5" VerticalAlignment="Center" >
             <Image
-               Source="ms-appx:///Assets/lyracoin.png"
+               Source="ms-appx:///Assets/lyraicon50x50.png"
                                Stretch="Uniform"
 		               HorizontalAlignment="Center"
 		               VerticalAlignment="Center"/>
@@ -54,7 +55,7 @@
               ItemsSource="{x:Bind tokens}"
               x:Name="Tokens" Width="180"
                       PlaceholderText=" Select Token to send"
-              SelectedItem="{x:Bind selectedToken, Mode=TwoWay}" />
+              SelectedItem="{x:Bind settings.selectedToken, Mode=TwoWay}" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
@@ -67,7 +68,8 @@
                          FontSize="48"
                          FontStretch="Expanded"
                          TextAlignment="Right"
-                         Text="{x:Bind amountString, Mode=TwoWay}"
+                         x:Name="txtAmount"
+                         Text="{x:Bind settings.amountString, Mode=TwoWay}"
                          PlaceholderText="0" />
                 <TextBlock FontSize="64" VerticalAlignment="Bottom">
                     <Run Text=" LYR" FontSize="24" />
@@ -80,6 +82,7 @@
             <TextBlock Text="Total: 2001 LYR" />
         </StackPanel>
         <Button Grid.Row="5" Grid.ColumnSpan="3" Content="Send"
+                AllowFocusOnInteraction="True"
 						Click="Send_Click"
 						Style="{StaticResource LoginButtonStyle}" />
     </Grid>

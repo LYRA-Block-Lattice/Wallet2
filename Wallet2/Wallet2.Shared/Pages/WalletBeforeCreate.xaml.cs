@@ -29,7 +29,7 @@ namespace Wallet2.Shared.Pages
             this.InitializeComponent();
 
             var localSettings = ApplicationData.Current.LocalSettings;
-            if (localSettings.Values["devmode"].ToString() == "ture")
+            if (localSettings.Values["devmode"]?.ToString() == "ture")
                 btnTestnet.Visibility = Visibility.Visible;
             else
                 btnTestnet.Visibility = Visibility.Collapsed;
