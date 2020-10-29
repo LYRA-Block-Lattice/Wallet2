@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -22,27 +21,27 @@ namespace Wallet2.Shared.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WalletBeforeCreate : Page
+    public sealed partial class WalletSettings : Page
     {
-        public WalletBeforeCreate()
+        public WalletSettings()
         {
             this.InitializeComponent();
 
             var localSettings = ApplicationData.Current.LocalSettings;
-            if (localSettings.Values["devmode"].ToString() == "ture")
-                btnTestnet.Visibility = Visibility.Visible;
-            else
-                btnTestnet.Visibility = Visibility.Collapsed;
+            bool v = "ture" == localSettings.Values["devmode"].ToString();
+            chkDev.IsChecked = v;
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void DevChecked(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(WalletCreatePassword), new WalletCreateSettings { network = "mainnet" });
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["devmode"] = "ture";
         }
 
-        private void CreateTestnet_Click(object sender, RoutedEventArgs e)
+        private void DevUnChecked(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(WalletCreatePassword), new WalletCreateSettings { network = "testnet" });
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["devmode"] = "false";
         }
     }
 }

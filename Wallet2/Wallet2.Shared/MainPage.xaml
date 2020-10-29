@@ -128,7 +128,9 @@
                     <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
                         Settings and support
                     </TextBlock>
-                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"><Bold>&gt;</Bold></TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"
+                               Tapped="GoSettings"
+                               ><Bold>&gt;</Bold></TextBlock>
                 </Grid>
                 <StackPanel Background="LightGray" Height="1"></StackPanel>
                 <TextBlock Padding="20">

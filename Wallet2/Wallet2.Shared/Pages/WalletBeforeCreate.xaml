@@ -38,6 +38,7 @@
                     />
             <StackPanel Background="LightGray" Height="1" Padding="10"></StackPanel>
             <Button Content="Crate a Testnet Wallet"
+                    x:Name="btnTestnet"
                 Style="{StaticResource MaterialContainedButtonStyle}"
                 Click="CreateTestnet_Click"
                     />

@@ -56,17 +56,17 @@ namespace Wallet2
 					() =>
 					{
 						Bindings.Update();
-						if (App.Store.State.wallet != null)
-						{
-							createNewWallet.Visibility = Visibility.Collapsed;
-							mainWallet.Visibility = Visibility.Visible;
-						}
-						else
-						{
-							createNewWallet.Visibility = Visibility.Visible;
-							mainWallet.Visibility = Visibility.Collapsed;
-						}
-					}
+                        if (App.Store.State.wallet != null)
+                        {
+                            createNewWallet.Visibility = Visibility.Collapsed;
+                            mainWallet.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            createNewWallet.Visibility = Visibility.Visible;
+                            mainWallet.Visibility = Visibility.Collapsed;
+                        }
+                    }
 					);
 				});
 		}
@@ -131,6 +131,11 @@ namespace Wallet2
 				wallet = App.Store.State.wallet
 			};
 			_ = Task.Run(() => { App.Store.Dispatch(oAct); });
+		}
+
+		private void GoSettings(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(WalletSettings));
 		}
 	}
 }

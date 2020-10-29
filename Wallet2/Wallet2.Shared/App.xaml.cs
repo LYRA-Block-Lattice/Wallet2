@@ -116,10 +116,11 @@ namespace Wallet2
             {
                 if (_rootFrame.Content == null)
                 {
-                    //ApplicationData.
+                    var dataPath = ApplicationData.Current.LocalFolder.Path;
+                    var fn = $"{dataPath}/default.lyrawallet";
 
                     Type typEntry;
-                    if (App.Store.State?.IsOpening ?? false)
+                    if (!File.Exists(fn) || (App.Store.State?.IsOpening ?? false))
                         typEntry = typeof(MainPage);
                     else
                         typEntry = typeof(OpenWithPassword);
@@ -145,9 +146,15 @@ namespace Wallet2
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = _rootFrame.BackStack.Any()
-            //    ? AppViewBackButtonVisibility.Visible
-            //    : AppViewBackButtonVisibility.Collapsed;
+            var view = SystemNavigationManager.GetForCurrentView();
+            if (_rootFrame.CurrentSourcePageType.Name == "MainPage")
+                view.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            else
+            {
+                view.AppViewBackButtonVisibility = _rootFrame.BackStack.Any()
+                  ? AppViewBackButtonVisibility.Visible
+                  : AppViewBackButtonVisibility.Collapsed;
+            }
 
             //Analytics.ReportPageView(e);
         }

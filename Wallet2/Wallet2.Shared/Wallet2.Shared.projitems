@@ -54,6 +54,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletRepeatPassword.xaml.cs">
       <DependentUpon>WalletRepeatPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletSettings.xaml.cs">
+      <DependentUpon>WalletSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Samples\Homies.xaml.cs">
       <DependentUpon>Homies.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\WalletRepeatPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\WalletSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
