@@ -69,13 +69,13 @@ namespace Wallet2
 
                         if (App.Store.State.wallet != null)
                         {
-                            createNewWallet.Visibility = Visibility.Collapsed;
-                            mainWallet.Visibility = Visibility.Visible;
+                            withoutWallet.Visibility = Visibility.Collapsed;
+                            withWallet.Visibility = Visibility.Visible;
                         }
                         else
                         {
-                            createNewWallet.Visibility = Visibility.Visible;
-                            mainWallet.Visibility = Visibility.Collapsed;
+							withoutWallet.Visibility = Visibility.Visible;
+							withWallet.Visibility = Visibility.Collapsed;
                         }
                     }
 					);
@@ -173,5 +173,10 @@ namespace Wallet2
 			else
 				return $"{GetMainBalance() * 0.0026}";
         }
+
+		private void Backup(object sender, RoutedEventArgs e)
+		{
+			
+		}
 	}
 }

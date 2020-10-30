@@ -15,7 +15,7 @@
     <Page.Resources>
         <converters:StringFormatConverter x:Key="StringFormatConverter" />
         <converters:BalanceConverter x:Key="BalanceConverter" />
-        
+
         <Style x:Key="MaterialBottomNavigationBarStyle"
 		   TargetType="controls:BottomNavigationBar">
 
@@ -41,109 +41,151 @@
 
         <Style TargetType="controls:BottomNavigationBar"
 		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />
-        
+
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="All"
           VerticalAlignment="Stretch" Padding="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
+        <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
+            Wallet
+        </TextBlock>
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
-                <Grid x:Name="mainWallet" Visibility="Visible" Background="DarkCyan" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock FontSize="12" FontWeight="Bold" Foreground="White">
+                <StackPanel x:Name="withWallet" Visibility="Visible">
+                    <Grid Background="DarkCyan" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="18" FontWeight="Bold" Foreground="White">
                             My main account
-                    </TextBlock>
-                    <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White"
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White"
                                Tapped="CopyAddr"
                                Text="{x:Bind accountId}" />
 
-                    <TextBlock Grid.Row="2" FontSize="24" FontWeight="Bold" Padding="0,20,0,20" Foreground="White">
+                        <TextBlock Grid.Row="2" FontSize="24" FontWeight="Bold" Padding="0,20,0,20" Foreground="White">
                         <Run Text="$ " />
                         <Run Text="{x:Bind GetDollarWorth()}" />
-                    </TextBlock>
-                    <Grid Grid.Row="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="64"/>
-                            <ColumnDefinition Width="64" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" 
+                        </TextBlock>
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="64"/>
+                                <ColumnDefinition Width="64" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" 
                                    VerticalAlignment="Bottom"
                                    TextWrapping="Wrap" Foreground="White" >
                             <Run Text="{x:Bind mainBalance}" />
                             <Run Text=" LYR" />
-                        </TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="0"  FontSize="12"  TextWrapping="Wrap" Foreground="White">
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0"  FontSize="12"  TextWrapping="Wrap" Foreground="White">
                         and no tokens
-                        </TextBlock>
-                        <Button Grid.Column="1" Grid.RowSpan="2" Padding="2"
+                            </TextBlock>
+                            <Button Grid.Column="1" Grid.RowSpan="2" Padding="2"
                                 Height="40" Width="40"
                                 Click="Receive"  Background="GreenYellow" CornerRadius="18">
-                            <SymbolIcon Symbol="Download"/>
-                        </Button>
-                        <Button Grid.Column="2" Grid.RowSpan="2" Padding="2"
+                                <SymbolIcon Symbol="Download"/>
+                            </Button>
+                            <Button Grid.Column="2" Grid.RowSpan="2" Padding="2"
                                 Height="40" Width="40"
                                 Click="Send"  Background="GreenYellow" CornerRadius="18">
-                            <SymbolIcon Symbol="Upload" />
-                        </Button>
+                                <SymbolIcon Symbol="Upload" />
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid x:Name="createNewWallet" Visibility="Collapsed" Background="DarkCyan" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Button Style="{StaticResource MaterialFabStyle}" Click="Button_Click">
-                        <extensions:ControlExtensions.Icon>
-                            <SymbolIcon Symbol="Add" />
-                        </extensions:ControlExtensions.Icon>
-                    </Button>
-                    <TextBlock Grid.Row="1" FontSize="34" FontWeight="Bold" Foreground="White">
+                    <!-- wallet switch -->
+                    <Grid HorizontalAlignment="Stretch" Padding="30,4,30,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="12" HorizontalAlignment="Left">
+                        ● +
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Manage accounts <Bold>&gt;</Bold></TextBlock>
+                    </Grid>
+                    <!-- backup notify -->
+                    <Grid Padding="10" Background="LightYellow" CornerRadius="20" MaxWidth="450"
+                          RowSpacing="12" ColumnSpacing="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Glyph="&#xea18;" Foreground="Red" />
+                        <TextBlock Grid.Column="1" Text="Action required: not backed up" 
+                                   FontSize="24" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="14" 
+                                   Text="If your device gets lost or stolen, or if there's an unexpected hardware error, you will loose your funds forever." />
+                        <Button Grid.Column="1" Grid.Row="2" Content="Back up now"
+                            AllowFocusOnInteraction="True"
+						    Click="Backup"
+						     />
+                    </Grid>
+                </StackPanel>
+                <StackPanel x:Name="withoutWallet" Visibility="Collapsed">
+                    <Grid Background="DarkCyan" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource MaterialFabStyle}" Click="Button_Click">
+                            <extensions:ControlExtensions.Icon>
+                                <SymbolIcon Symbol="Add" />
+                            </extensions:ControlExtensions.Icon>
+                        </Button>
+                        <TextBlock Grid.Row="1" FontSize="34" FontWeight="Bold" Foreground="White">
                         Create a wallet
-                    </TextBlock>
-                    <TextBlock Grid.Row="2" FontSize="14" TextWrapping="Wrap" Foreground="White">
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" FontSize="14" TextWrapping="Wrap" Foreground="White">
                         Creating Lyra Wallet is free. Lyra wallet can send 
-                        and receive even create Tokens and NFT. 
-                    </TextBlock>
-                </Grid>
-                <Grid HorizontalAlignment="Stretch" Padding="20,4,20,30">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" FontSize="12" HorizontalAlignment="Left">
+                        and receive even create Tokens and NFT.
+                        </TextBlock>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" Padding="30,4,30,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="12" HorizontalAlignment="Left">
                         Already have a wallet?
-                    </TextBlock>
-                    <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
-                </Grid>
-                <Grid Background="LightYellow" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="300" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontSize="14">
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
+                    </Grid>
+                    <Grid Background="LightYellow" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="300" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" FontSize="14">
                         What is Lyra?
-                    </TextBlock>
-                    <TextBlock Grid.Row="1" FontSize="14">
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" FontSize="14">
                         [Images goes here]
-                    </TextBlock>
+                        </TextBlock>
 
-                </Grid>
+                    </Grid>
+                </StackPanel>
+
+                <!--shared content-->
                 <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
                 More things
                 </TextBlock>
@@ -155,7 +197,7 @@
                     <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
                         Feedback
                     </TextBlock>
-                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"><Bold>&gt;</Bold></TextBlock>                    
+                    <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"><Bold>&gt;</Bold></TextBlock>
                 </Grid>
                 <StackPanel Background="LightGray" Height="1"></StackPanel>
                 <Grid HorizontalAlignment="Stretch" Padding="20,10,20,10">
@@ -172,48 +214,51 @@
                 </Grid>
                 <StackPanel Background="LightGray" Height="1"></StackPanel>
                 <TextBlock Padding="20">
-                    Lyra Live
+                    <Run>Lyra Live Inc. is a independent, self-funded blockchain company. We provide free, open-source, full range blockchain solutions.</Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run>We do not collect, hold, or store keys, account information, or password. We do not collect data passively, do not menetize the collection of data, and do not use your data for marketing or advertisting.</Run>
                 </TextBlock>
                 <TextBlock Padding="20" TextWrapping="Wrap" MaxWidth="500">
-                    We do not collect, hold, or store keys, account information, or password. We do not collect data passively, do not menetize the collection of data, and do not use your data for marketing or advertisting.
+                   
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>
-            <StackPanel Visibility="Collapsed" Grid.Row="2" Background="Aquamarine">
-                <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
-                    <material:BottomNavigationBar.Items>
-                        <material:BottomNavigationBarItem Label=" ">
-                            <material:BottomNavigationBarItem.Icon>
-                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE825;"/>
-                            </material:BottomNavigationBarItem.Icon>
-                        </material:BottomNavigationBarItem>
-                        <material:BottomNavigationBarItem Label=" ">
-                            <material:BottomNavigationBarItem.Icon>
-                                <SymbolIcon Symbol="Sync" />
-                            </material:BottomNavigationBarItem.Icon>
-                        </material:BottomNavigationBarItem>
-                        <material:BottomNavigationBarItem Label=" ">
-                            <material:BottomNavigationBarItem.Icon>
-                                <SymbolIcon Symbol="Emoji2" />
-                            </material:BottomNavigationBarItem.Icon>
-                        </material:BottomNavigationBarItem>
-                        <material:BottomNavigationBarItem Label=" ">
-                            <material:BottomNavigationBarItem.Icon>
-                                <SymbolIcon Symbol="Flag" />
-                            </material:BottomNavigationBarItem.Icon>
-                            <material:BottomNavigationBarItem.Badge>
-                                <entities:BottomNavigationBarBadge IsVisible="True"
+        <StackPanel Visibility="Collapsed" Grid.Row="2" Background="Aquamarine">
+            <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
+                <material:BottomNavigationBar.Items>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE825;"/>
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Sync" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Emoji2" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Flag" />
+                        </material:BottomNavigationBarItem.Icon>
+                        <material:BottomNavigationBarItem.Badge>
+                            <entities:BottomNavigationBarBadge IsVisible="True"
                                                   Text="3"
                                                   xmlns:entities="using:Uno.Material.Entities" />
-                            </material:BottomNavigationBarItem.Badge>
-                        </material:BottomNavigationBarItem>
-                        <material:BottomNavigationBarItem Label=" ">
-                            <material:BottomNavigationBarItem.Icon>
-                                <SymbolIcon Symbol="Setting" />
-                            </material:BottomNavigationBarItem.Icon>
-                        </material:BottomNavigationBarItem>
-                    </material:BottomNavigationBar.Items>
-                </material:BottomNavigationBar>
-            </StackPanel>
+                        </material:BottomNavigationBarItem.Badge>
+                    </material:BottomNavigationBarItem>
+                    <material:BottomNavigationBarItem Label=" ">
+                        <material:BottomNavigationBarItem.Icon>
+                            <SymbolIcon Symbol="Setting" />
+                        </material:BottomNavigationBarItem.Icon>
+                    </material:BottomNavigationBarItem>
+                </material:BottomNavigationBar.Items>
+            </material:BottomNavigationBar>
+        </StackPanel>
     </Grid>
 </Page>
