@@ -61,8 +61,12 @@
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.4" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.4" />
     <PackageReference Include="ZXing.Net.Mobile" Version="3.0.0-beta5" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.0.0-beta5" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="dotnetstandard-bip39">
+      <HintPath>..\..\..\dotnetstandard-bip39\package\lib\netstandard2.0\dotnetstandard-bip39.dll</HintPath>
+    </Reference>
     <Reference Include="Lyra.Data">
       <HintPath>..\..\..\LyraNetwork\Core\Lyra.Data\bin\Debug\netstandard2.0\Lyra.Data.dll</HintPath>
     </Reference>

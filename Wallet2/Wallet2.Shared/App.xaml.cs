@@ -73,6 +73,17 @@ namespace Wallet2
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+#if __IOS__
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+#endif
+//#if __MACOS__
+//            ZXing.Net.Mobile.Forms.MacOS.Platform.Init();
+//#endif
+//#if NETFX_CORE
+//            ZXing.Net.Mobile.Forms.WindowsUniversal.Platform.Init();
+//#endif
+
+
             // Set a default palette to make sure all colors used by MaterialResources exist
             this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
 

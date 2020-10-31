@@ -32,6 +32,7 @@ namespace Wallet2.Shared.Pages
             accountId = App.Store.State.wallet.AccountId;
         }
 
+#if NETFX_CORE || __ANDROID__ || __IOS__ || __MACOS__
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -51,5 +52,6 @@ namespace Wallet2.Shared.Pages
 
             QrCodeImg.Source = image;
         }
+#endif
     }
 }

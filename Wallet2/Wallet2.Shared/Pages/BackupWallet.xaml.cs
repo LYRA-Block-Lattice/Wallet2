@@ -41,7 +41,7 @@ namespace Wallet2.Shared.Pages
             var pkv = ByteArrayToString(pvkBin);
             var mnu = bip39.EntropyToMnemonic(pkv, BIP39Wordlist.English);
 
-            var words = mnu.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var words = mnu.Trim().Split(' ');
             // create grid
             for(var i = 0; i < words.Length; i++)
             {
