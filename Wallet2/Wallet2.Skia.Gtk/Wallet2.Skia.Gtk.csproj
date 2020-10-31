@@ -26,7 +26,7 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.8" />
-    <PackageReference Include="MongoDB.Bson" Version="2.11.2" />
+    <PackageReference Include="MongoDB.Bson" Version="2.11.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.8.8" />
     <PackageReference Include="ReduxSimple" Version="3.5.1" />
@@ -34,10 +34,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="ReduxSimple" Version="3.5.1" />
-    <PackageReference Include="Uno.Material" Version="1.0.0-dev.515" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.578" />
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.191.gc988bdd4ff" />
-    <PackageReference Include="Uno.UI.Skia.Gtk" Version="3.2.0-dev.256" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.1.6" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.Skia.Gtk" Version="3.2.0-dev.382" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.2.0-dev.382" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Lyra.Data">

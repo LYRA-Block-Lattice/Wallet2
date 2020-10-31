@@ -43,5 +43,10 @@ namespace Wallet2.Shared.Pages
             var localSettings = ApplicationData.Current.LocalSettings;
             localSettings.Values["devmode"] = "false";
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
     }
 }

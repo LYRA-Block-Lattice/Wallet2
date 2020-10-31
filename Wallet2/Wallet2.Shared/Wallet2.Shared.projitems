@@ -31,6 +31,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalletSendSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalletCreateSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\BackupWallet.xaml.cs">
+      <DependentUpon>BackupWallet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\OpenWithPassword.xaml.cs">
       <DependentUpon>OpenWithPassword.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\BackupWallet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

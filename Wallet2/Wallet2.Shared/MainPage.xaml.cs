@@ -176,7 +176,8 @@ namespace Wallet2
 
 		private void Backup(object sender, RoutedEventArgs e)
 		{
-			
+			Frame.Navigate(typeof(BackupWallet));
 		}
+
 	}
 }
