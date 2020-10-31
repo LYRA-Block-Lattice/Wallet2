@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="Wallet2.Shared.Pages.RestoreWallet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wallet2.Shared.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{StaticResource Color01Brush}" toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20"
+          RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <CommandBar Content="Restore Wallet" />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Padding="30">
+                <TextBlock Padding="10" Text="Enter your recovery phrase" FontSize="24" FontWeight="Bold" />
+
+                <Grid x:Name="wordsGrid" MaxWidth="450" CornerRadius="20"
+                  Padding="20"
+                  RowSpacing="1"
+                    Background="LightGray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <Button Content="Restore" Padding="40"
+                    Style="{StaticResource MaterialContainedButtonStyle}"
+                    Click="wroten"
+                    />
+            </StackPanel>
+        </ScrollViewer>
+
+
+    </Grid>
+</Page>

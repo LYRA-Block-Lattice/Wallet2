@@ -170,7 +170,7 @@
                         <TextBlock Grid.Column="0" FontSize="12" HorizontalAlignment="Left">
                         Already have a wallet?
                         </TextBlock>
-                        <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
+                        <TextBlock Tapped="restore_clicked" Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Restore <Bold>&gt;</Bold></TextBlock>
                     </Grid>
                     <Grid Background="LightYellow" CornerRadius="10" Padding="30" RowSpacing="8" MaxWidth="450">
                         <Grid.RowDefinitions>

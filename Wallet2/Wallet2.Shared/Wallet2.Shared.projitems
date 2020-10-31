@@ -40,6 +40,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ResetWalletDialog.xaml.cs">
       <DependentUpon>ResetWalletDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\RestoreWallet.xaml.cs">
+      <DependentUpon>RestoreWallet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\SendToken.xaml.cs">
       <DependentUpon>SendToken.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\ResetWalletDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\RestoreWallet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

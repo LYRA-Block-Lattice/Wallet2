@@ -179,5 +179,9 @@ namespace Wallet2
 			Frame.Navigate(typeof(BackupWallet));
 		}
 
+		private void restore_clicked(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(RestoreWallet));
+		}
 	}
 }
