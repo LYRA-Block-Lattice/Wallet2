@@ -164,6 +164,9 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="dotnetstandard-bip39">
+      <HintPath>..\..\..\dotnetstandard-bip39\package\lib\netstandard2.0\dotnetstandard-bip39.dll</HintPath>
+    </Reference>
     <Reference Include="Lyra.Data">
       <HintPath>..\..\..\LyraNetwork\Core\Lyra.Data\bin\Debug\netstandard2.0\Lyra.Data.dll</HintPath>
     </Reference>

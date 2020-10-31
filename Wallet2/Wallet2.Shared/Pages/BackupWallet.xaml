@@ -19,15 +19,28 @@
         <!-- Header -->
         <CommandBar Content="Backup Wallet" />
 
-        <StackPanel Padding="30" Grid.Row="1">
-            <TextBlock Padding="10" Text="Here is your recovery phrase" FontSize="24" FontWeight="Bold" />
-            <TextBlock Padding="10" Text="Write it down on paper. Resist temptation to email it to yourself or screenshot it." FontSize="14" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Padding="30">
+                <TextBlock Padding="10" Text="Here is your recovery phrase" FontSize="24" FontWeight="Bold" />
+                <TextBlock Padding="10" Text="Write it down on paper. Resist temptation to email it to yourself or screenshot it." FontSize="14" />
 
-            <Grid x:Name="words" MaxWidth="450" CornerRadius="20"
-              Background="LightGray">
-                
-            </Grid>
-        </StackPanel>
+                <Grid x:Name="wordsGrid" MaxWidth="450" CornerRadius="20"
+                  Padding="20"
+                  RowSpacing="1"
+                    Background="LightGray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <Button Content="I've wroted all down" Padding="40"
+                    Style="{StaticResource MaterialContainedButtonStyle}"
+                    Click="wroten"
+                    />
+            </StackPanel>
+        </ScrollViewer>
+
 
     </Grid>
 </Page>
