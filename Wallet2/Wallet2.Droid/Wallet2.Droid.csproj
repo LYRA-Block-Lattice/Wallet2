@@ -51,6 +51,9 @@
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotnetstandard-bip39">
+      <HintPath>..\..\..\dotnetstandard-bip39\package\lib\netstandard2.0\dotnetstandard-bip39.dll</HintPath>
+    </Reference>
     <Reference Include="Lyra.Data">
       <HintPath>..\..\..\LyraNetwork\Core\Lyra.Data\bin\Debug\netstandard2.0\Lyra.Data.dll</HintPath>
     </Reference>
@@ -89,6 +92,12 @@
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.33" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>3.0.0-beta5</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>3.0.0-beta5</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -123,4 +132,9 @@
       <Compile Remove="$(_AndroidResourceDesignerFile)" />
     </ItemGroup>
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

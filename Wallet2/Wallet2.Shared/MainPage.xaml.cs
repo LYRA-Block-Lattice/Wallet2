@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ZXing;
+using ZXing.Mobile;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,14 +30,25 @@ namespace Wallet2
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		string accountId = string.Empty;
+		string accountIdShort = string.Empty;
 		string mainBalance = string.Empty;
+
+		MobileBarcodeScanner scanner;
 
 		public MainPage()
 		{
 			this.InitializeComponent();
 
 			Loaded += SamplesPage_Loaded;
+
+			//Create a new instance of our scanner
+			scanner = new MobileBarcodeScanner();
+#if __UWP__
+			scanner.RootFrame = this.Frame;
+			scanner.Dispatcher = this.Dispatcher;
+			scanner.OnCameraError += Scanner_OnCameraError;
+			scanner.OnCameraInitialized += Scanner_OnCameraInitialized; ;
+#endif
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,7 +56,7 @@ namespace Wallet2
 			Frame.Navigate(typeof(WalletBeforeCreate));
 		}
 
-		#region CollapsibleCommandBar
+#region CollapsibleCommandBar
 
 		private const double CollapsibleCommandBarScrollThreshold = 48;
 		private bool _isExpanded = true; // true to force first update UpdateCollapsibleCommandBar(0) in ctor.
@@ -61,7 +74,7 @@ namespace Wallet2
 					{
 						if(App.Store.State.IsOpening)
                         {
-							accountId = App.Store.State.wallet?.AccountId;
+							accountIdShort = Shorten(App.Store.State.wallet?.AccountId);
 							mainBalance = $"{GetMainBalance()}";
 
 							Bindings.Update();
@@ -133,7 +146,7 @@ namespace Wallet2
 			return children.Concat(children.SelectMany(GetDescendants));
 		}
 
-		#endregion
+#endregion
 
 		private void Receive(object sender, RoutedEventArgs e)
 		{
@@ -182,6 +195,57 @@ namespace Wallet2
 		private void restore_clicked(object sender, RoutedEventArgs e)
 		{
 			Frame.Navigate(typeof(RestoreWallet));
+		}
+
+		private void ShowAddress(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(ShowAddress));
+		}
+
+		void Scanner_OnCameraInitialized()
+		{
+			//handle initialization
+		}
+
+		void Scanner_OnCameraError(IEnumerable<string> errors)
+		{
+			if (errors != null)
+			{
+				errors.ToList().ForEach(async e => await MessageBox(e));
+			}
+		}
+
+        private Task MessageBox(string e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void scan(object sender, RoutedEventArgs e)
+		{
+			//Tell our scanner to use the default overlay
+			scanner.UseCustomOverlay = false;
+			//We can customize the top and bottom text of our default overlay
+			scanner.TopText = "Hold camera up to barcode";
+			scanner.BottomText = "Camera will automatically scan barcode\r\n\r\nPress the 'Back' button to Cancel";
+			//Start scanning
+			scanner.Scan().ContinueWith(t =>
+			{
+				if (t.Result != null)
+					HandleScanResult(t.Result);
+			});
+		}
+
+        private void HandleScanResult(Result result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Shorten(string addr)
+		{
+			if (string.IsNullOrWhiteSpace(addr) || addr.Length < 10)
+				return addr;
+
+			return $"{addr.Substring(0, 6)}...{addr.Substring(addr.Length - 8, 8)}";
 		}
 	}
 }

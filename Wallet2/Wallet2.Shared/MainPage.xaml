@@ -51,10 +51,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel Orientation="Horizontal">
             <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
             Wallet
             </TextBlock>
+            <Button Content="Scan" Click="scan" />
         </StackPanel>
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
@@ -69,10 +70,19 @@
                         <TextBlock FontSize="18" FontWeight="Bold" Foreground="White">
                             My main account
                         </TextBlock>
-                        <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" Foreground="White"
-                               Tapped="CopyAddr"
-                               Text="{x:Bind accountId}" />
 
+                        <!-- address and qrcode button -->
+                        <StackPanel Grid.Row="1"  Orientation="Horizontal">
+                            <TextBlock FontSize="10" FontWeight="Bold" Foreground="White"
+                               Tapped="CopyAddr"
+                               Text="{x:Bind accountIdShort}" />
+                            <Button Padding="2"
+                                Height="20" Width="20"
+                                Click="ShowAddress"  Background="LightGray" CornerRadius="18">
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xED14;"/>
+                            </Button>
+                        </StackPanel>
+                        
                         <TextBlock Grid.Row="2" FontSize="24" FontWeight="Bold" Padding="0,20,0,20" Foreground="White">
                         <Run Text="$ " />
                         <Run Text="{x:Bind GetDollarWorth()}" />

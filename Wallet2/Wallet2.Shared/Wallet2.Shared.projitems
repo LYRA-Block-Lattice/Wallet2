@@ -46,6 +46,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\SendToken.xaml.cs">
       <DependentUpon>SendToken.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ShowAddress.xaml.cs">
+      <DependentUpon>ShowAddress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletBeforeCreate.xaml.cs">
       <DependentUpon>WalletBeforeCreate.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\SendToken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\ShowAddress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

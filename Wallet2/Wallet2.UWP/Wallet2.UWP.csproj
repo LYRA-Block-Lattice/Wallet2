@@ -33,6 +33,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.1.6" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>3.0.0-beta5</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
