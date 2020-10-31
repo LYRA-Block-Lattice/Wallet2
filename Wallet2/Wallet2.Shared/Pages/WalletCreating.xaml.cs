@@ -64,15 +64,33 @@ namespace Wallet2.Shared.Pages
 
             // create or restore then goto appshell
             var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            var oAct = new WalletCreateAction
-            {
-                network = _settings.network,
-                name = "default",
-                password = _settings.password,
-                path = localFolder.Path
-            };
 
-            _ = Task.Run(() => { App.Store.Dispatch(oAct); });
+            if(_settings.restoreKey == null)
+            {
+                var oAct = new WalletCreateAction
+                {
+                    network = _settings.network,
+                    name = "default",
+                    password = _settings.password,
+                    path = localFolder.Path
+                };
+
+                _ = Task.Run(() => { App.Store.Dispatch(oAct); });
+            }
+            else
+            {
+                // create or restore then goto appshell
+                var oAct = new WalletRestoreAction
+                {
+                    privateKey = _settings.restoreKey,
+                    network = _settings.network,
+                    name = "default",
+                    password = _settings.password,
+                    path = localFolder.Path
+                };
+
+                _ = Task.Run(() => { App.Store.Dispatch(oAct); });
+            }
 
             base.OnNavigatedTo(e);
         }

@@ -35,10 +35,13 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
 
-                <Button Content="Restore" Padding="40"
+                <Button x:Name="btnRestore" Content="Restore"
                     Style="{StaticResource MaterialContainedButtonStyle}"
-                    Click="wroten"
-                    />
+                    Click="Restore" />
+
+                <Button x:Name="btnRestoreTestnet" Content="Restore to Testnet" Visibility="Collapsed"
+                    Style="{StaticResource MaterialContainedButtonStyle}"
+                    Click="RestoreTestnet" />
             </StackPanel>
         </ScrollViewer>
 

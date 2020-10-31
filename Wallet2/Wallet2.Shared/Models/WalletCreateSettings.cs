@@ -8,6 +8,13 @@ namespace Wallet2.Shared.Models
     [Windows.UI.Xaml.Data.Bindable]
     public class WalletCreateSettings : BaseViewModel
     {
+        string _restoreKey = string.Empty;
+        public string restoreKey
+        {
+            get { return _restoreKey; }
+            set { SetProperty(ref _restoreKey, value); }
+        }
+
         string _network = string.Empty;
         public string network
         {

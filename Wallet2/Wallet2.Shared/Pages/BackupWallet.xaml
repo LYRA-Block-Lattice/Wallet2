@@ -34,7 +34,7 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
 
-                <Button Content="I've wroted all down" Padding="40"
+                <Button Content="I've wroted all down"
                     Style="{StaticResource MaterialContainedButtonStyle}"
                     Click="wroten"
                     />

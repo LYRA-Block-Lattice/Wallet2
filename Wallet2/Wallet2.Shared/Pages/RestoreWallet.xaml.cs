@@ -7,8 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,7 +32,14 @@ namespace Wallet2.Shared.Pages
         public RestoreWallet()
         {
             this.InitializeComponent();
+
             Loaded += Page_Loaded;
+
+            var localSettings = ApplicationData.Current.LocalSettings;
+            if (localSettings.Values["devmode"]?.ToString() == "ture")
+                btnRestoreTestnet.Visibility = Visibility.Visible;
+            else
+                btnRestoreTestnet.Visibility = Visibility.Collapsed;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -63,7 +72,16 @@ namespace Wallet2.Shared.Pages
             }
         }
 
-        private void wroten(object sender, RoutedEventArgs e)
+        private void Restore(object sender, RoutedEventArgs e)
+        {
+            RestoreFor("mainnet");
+        }
+        private void RestoreTestnet(object sender, RoutedEventArgs e)
+        {
+            RestoreFor("testnet");
+        }
+
+        private void RestoreFor(string networkId)
         {
             if (tboxes.Any(a => string.IsNullOrWhiteSpace(a.Text)))
                 return;
@@ -77,19 +95,7 @@ namespace Wallet2.Shared.Pages
 
             var lyraKey = Base58Encoding.EncodePrivateKey(privateKey);
 
-            // create or restore then goto appshell
-            var oAct = new WalletRestoreAction
-            {
-                privateKey = lyraKey,
-                network = "testnet",
-                name = "default",
-                password = "111111",
-                path = Windows.Storage.ApplicationData.Current.LocalFolder.Path
-            };
-
-            _ = Task.Run(() => { App.Store.Dispatch(oAct); });
-
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(WalletCreatePassword), new WalletCreateSettings { network = networkId, restoreKey = lyraKey });
         }
 
         public static byte[] StringToByteArray(String hex)

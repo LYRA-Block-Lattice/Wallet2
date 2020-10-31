@@ -34,6 +34,9 @@ namespace Wallet2.Shared.Pages
         {
             _settings = e.Parameter as WalletCreateSettings;
 
+            if (!string.IsNullOrEmpty(_settings.restoreKey))
+                cmdBar.Content = "Restore your wallet";
+
             base.OnNavigatedTo(e);
         }
 
