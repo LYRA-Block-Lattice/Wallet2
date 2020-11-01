@@ -49,14 +49,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="64"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
-            Wallet
+        <Grid MaxWidth="450" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="20" FontWeight="Bold" VerticalAlignment="Center">
+                <Run>Wallet</Run>
             </TextBlock>
-            <Button Content="Scan" Click="scan" />
-        </StackPanel>
+            <Button Grid.Column="1" Content="Scan" Click="scan" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        </Grid>
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
                 <StackPanel x:Name="withWallet" Visibility="Visible">
@@ -72,11 +76,11 @@
                         </TextBlock>
 
                         <!-- address and qrcode button -->
-                        <StackPanel Grid.Row="1"  Orientation="Horizontal">
-                            <TextBlock FontSize="10" FontWeight="Bold" Foreground="White"
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10">
+                            <TextBlock FontSize="10" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"
                                Tapped="CopyAddr"
                                Text="{x:Bind accountIdShort}" />
-                            <Button Padding="2"
+                            <Button Padding="2" VerticalAlignment="Center"
                                 Height="20" Width="20"
                                 Click="ShowAddress"  Background="LightGray" CornerRadius="18">
                                 <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xED14;"/>
@@ -131,7 +135,7 @@
                     </Grid>
                     <!-- backup notify -->
                     <Grid Padding="10" Background="LightYellow" CornerRadius="20" MaxWidth="450"
-                          RowSpacing="12" ColumnSpacing="8">
+                          RowSpacing="8" ColumnSpacing="8">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
@@ -143,8 +147,8 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon Glyph="&#xea18;" Foreground="Red" />
                         <TextBlock Grid.Column="1" Text="Action required: not backed up" 
-                                   FontSize="24" FontWeight="Bold" />
-                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="14" 
+                                   FontSize="24" FontWeight="Bold" TextWrapping="Wrap" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="14" TextWrapping="Wrap"
                                    Text="If your device gets lost or stolen, or if there's an unexpected hardware error, you will loose your funds forever." />
                         <Button Grid.Column="1" Grid.Row="2" Content="Back up now"
                             AllowFocusOnInteraction="True"

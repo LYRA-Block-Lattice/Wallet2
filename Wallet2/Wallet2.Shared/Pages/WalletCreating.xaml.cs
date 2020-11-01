@@ -65,7 +65,7 @@ namespace Wallet2.Shared.Pages
             // create or restore then goto appshell
             var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
-            if(_settings.restoreKey == null)
+            if(string.IsNullOrWhiteSpace(_settings.restoreKey))
             {
                 var oAct = new WalletCreateAction
                 {

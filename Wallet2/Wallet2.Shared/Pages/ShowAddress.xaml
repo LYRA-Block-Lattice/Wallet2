@@ -20,10 +20,10 @@
         <!-- Header -->
         <CommandBar Content="Address" />
 
-        <StackPanel Grid.Row="1" Padding="30">
+        <StackPanel Grid.Row="1" Padding="20">
             <TextBlock Text="My public addresses to receive funds" FontSize="24" FontWeight="Bold" Padding="20" />
 
-            <StackPanel Orientation="Horizontal" Padding="20">
+            <StackPanel Orientation="Horizontal" Padding="10">
                 <Image
                Source="ms-appx:///Assets/lyraicon50x50.png"
                                Stretch="Uniform"

@@ -20,13 +20,13 @@
         <CommandBar Content="Backup Wallet" />
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Padding="30">
+            <StackPanel Padding="10" Spacing="10">
                 <TextBlock Padding="10" Text="Here is your recovery phrase" FontSize="24" FontWeight="Bold" />
                 <TextBlock Padding="10" Text="Write it down on paper. Resist temptation to email it to yourself or screenshot it." FontSize="14" />
 
-                <Grid x:Name="wordsGrid" MaxWidth="450" CornerRadius="20"
-                  Padding="20"
-                  RowSpacing="1"
+                <Grid x:Name="wordsGrid" MaxWidth="450" CornerRadius="20" VerticalAlignment="Stretch"
+                  Padding="2"
+                  RowSpacing="5"
                     Background="LightGray">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -34,7 +34,7 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
 
-                <Button Content="I've wroted all down"
+                <Button Content="I've wroted all down" HorizontalAlignment="Center" Padding="10"
                     Style="{StaticResource MaterialContainedButtonStyle}"
                     Click="wroten"
                     />
