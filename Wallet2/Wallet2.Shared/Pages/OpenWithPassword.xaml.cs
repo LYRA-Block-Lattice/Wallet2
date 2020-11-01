@@ -61,10 +61,13 @@ namespace Wallet2.Shared.Pages
             var pwd = password.Password;
             _ = Task.Run(() =>
             {
-
+                string path = null;
+#if !__WASM__
+                path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+#endif
                 var oAct = new WalletOpenAction
                 {
-                    path = Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    path = path,
                     name = "default",
                     password = pwd ?? ""  // android simulator never get null
                 };

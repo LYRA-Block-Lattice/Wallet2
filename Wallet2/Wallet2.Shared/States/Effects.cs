@@ -1,6 +1,7 @@
 ﻿using Lyra.Core.Accounts;
 using Lyra.Core.API;
 using Lyra.Core.Blocks;
+using Microsoft.Toolkit.Uwp.UI;
 using ReduxSimple;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,16 @@ namespace LyraWallet.States
     /// </summary>
     public static class Effects
     {
+        private static IAccountDatabase GetStorage(string path)
+        {
+            IAccountDatabase store;
+            if (path == null)
+                store = new AccountInMemoryStorage();
+            else
+                store = new SecuredWalletStore(path);
+
+            return store;
+        }
         public static Effect<RootState> CreateWalletEffect = ReduxSimple.Effects.CreateEffect<RootState>
             (
                 () => App.Store.ObserveAction<WalletCreateAction>()
@@ -24,7 +35,7 @@ namespace LyraWallet.States
                     {
                         try
                         {
-                            var store = new SecuredWalletStore(action.path);
+                            IAccountDatabase store = GetStorage(action.path);
                             Wallet.Create(store, action.name, action.password, action.network);
 
                             var wallet = Wallet.Open(store, action.name, action.password);
@@ -62,7 +73,7 @@ namespace LyraWallet.States
                     {
                         try
                         {
-                            var store = new SecuredWalletStore(action.path);
+                            IAccountDatabase store = GetStorage(action.path);
                             var wallet = Wallet.Open(store, action.name, action.password);
 
                             return Observable.Return((wallet, ""));
@@ -100,7 +111,7 @@ namespace LyraWallet.States
                         {
                             try
                             {
-                                var store = new SecuredWalletStore(action.path);
+                                IAccountDatabase store = GetStorage(action.path);
                                 var wallet = Wallet.Open(store, action.name, action.password);
 
                                 var client = LyraRestClient.Create(wallet.NetworkId, Environment.OSVersion.ToString(), "Mobile Wallet", "1.0");
@@ -141,7 +152,7 @@ namespace LyraWallet.States
                         return Observable.StartAsync(async () => {
                             try
                             {
-                                var store = new SecuredWalletStore(action.path);
+                                IAccountDatabase store = GetStorage(action.path);
                                 Wallet.Create(store, action.name, action.password, action.network, action.privateKey);
 
                                 var wallet = Wallet.Open(store, action.name, action.password);
@@ -180,7 +191,7 @@ namespace LyraWallet.States
                 () => App.Store.ObserveAction<WalletRemoveAction>()
                     .Select(action =>
                     {
-                        var store = new SecuredWalletStore(action.path);
+                        IAccountDatabase store = GetStorage(action.path);
                         store.Delete(action.name);
                         return Observable.Return<Wallet>(null);
                      })

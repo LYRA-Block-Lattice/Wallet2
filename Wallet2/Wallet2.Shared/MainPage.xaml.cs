@@ -171,7 +171,7 @@ namespace Wallet2
 		{
 			var dataPackage = new DataPackage();
 			dataPackage.RequestedOperation = DataPackageOperation.Copy;
-			dataPackage.SetText((sender as TextBlock).Text);
+			dataPackage.SetText(App.Store.State.wallet.AccountId /*(sender as TextBlock).Text*/);
 			Clipboard.SetContent(dataPackage);
 		}
 

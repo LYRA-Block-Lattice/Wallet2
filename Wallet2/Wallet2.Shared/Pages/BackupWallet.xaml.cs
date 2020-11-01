@@ -57,7 +57,12 @@ namespace Wallet2.Shared.Pages
                 tblock.Inlines.Add(run2);
 
                 tblock.Padding = new Thickness(5);
-                wordsGrid.RowDefinitions.Add(new RowDefinition());
+
+                if(i < 12)
+                {
+                    var rd = new RowDefinition { Height = new GridLength((double)42) };
+                    wordsGrid.RowDefinitions.Add(rd);
+                }
 
                 wordsGrid.Children.Add(tblock);
                 Grid.SetRow(tblock, i % 12);

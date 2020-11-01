@@ -63,7 +63,10 @@ namespace Wallet2.Shared.Pages
                 }, _cancel.Token);
 
             // create or restore then goto appshell
-            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            string path = null;
+#if !__WASM__
+            path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+#endif
 
             if(string.IsNullOrWhiteSpace(_settings.restoreKey))
             {
@@ -72,7 +75,7 @@ namespace Wallet2.Shared.Pages
                     network = _settings.network,
                     name = "default",
                     password = _settings.password,
-                    path = localFolder.Path
+                    path = path
                 };
 
                 _ = Task.Run(() => { App.Store.Dispatch(oAct); });
@@ -86,7 +89,7 @@ namespace Wallet2.Shared.Pages
                     network = _settings.network,
                     name = "default",
                     password = _settings.password,
-                    path = localFolder.Path
+                    path = path
                 };
 
                 _ = Task.Run(() => { App.Store.Dispatch(oAct); });
