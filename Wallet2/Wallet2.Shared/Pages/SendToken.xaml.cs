@@ -47,6 +47,13 @@ namespace Wallet2.Shared.Pages
             settings.CurrentBalanceInDollar = App.Store.State.wallet.BaseBalance * App.Store.State.LyraPrice;
         }
 
+        private void Amount_Typed(object sender, RoutedEventArgs e)
+        {
+            if (decimal.TryParse(txtAmount.Text, out decimal result))
+                settings.Amount = result;
+
+            settings.toAddress = txtAddr.Text;      // android bug. not binding properly.
+        }
         private void Send_Click(object sender, RoutedEventArgs e)
         {
             // TODO: add argument check here
@@ -63,6 +70,8 @@ namespace Wallet2.Shared.Pages
             }
             if (string.IsNullOrEmpty(settings.toAddress))
                 errMsg = "Invalid to address";
+            else if (settings.Amount <= 0)
+                errMsg = "Amount must > 0";
 
             if(errMsg != null)
             {

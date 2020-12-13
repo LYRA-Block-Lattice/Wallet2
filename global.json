@@ -1,6 +1,6 @@
 {
     "sdk": {
-        "version": "5.0.100-rc.2.20479.15"
+        "version": "5.0.101"
     },
     "msbuild-sdks": {
         "MSBuild.Sdk.Extras": "2.0.54"

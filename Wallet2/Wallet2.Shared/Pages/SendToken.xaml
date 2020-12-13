@@ -46,6 +46,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="15" VerticalAlignment="Center">
             <TextBox Height="32" VerticalAlignment="Center" 
                      x:Name="txtAddr"
+                     TextChanged="Amount_Typed"
                      Text="{x:Bind settings.toAddress, Mode=TwoWay}"
                      PlaceholderText="To Wallet Address"/>
         </StackPanel>
@@ -78,6 +79,7 @@
                          FontStretch="Expanded"
                          TextAlignment="Right"
                          x:Name="txtAmount"
+                         TextChanged="Amount_Typed"
                          Text="{x:Bind settings.Amount, Mode=TwoWay, Converter={StaticResource DecimalConverter}}"
                          PlaceholderText="0" />
                 <TextBlock FontSize="64" VerticalAlignment="Bottom">
