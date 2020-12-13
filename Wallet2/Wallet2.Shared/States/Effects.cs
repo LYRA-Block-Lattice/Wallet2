@@ -1,4 +1,6 @@
-﻿using Lyra.Core.Accounts;
+﻿using CoinGecko.Clients;
+using CoinGecko.Interfaces;
+using Lyra.Core.Accounts;
 using Lyra.Core.API;
 using Lyra.Core.Blocks;
 using Microsoft.Toolkit.Uwp.UI;
@@ -251,12 +253,26 @@ namespace LyraWallet.States
                             try
                             {
                                 var client = LyraRestClient.Create(action.wallet.NetworkId, Environment.OSVersion.ToString(), "Mobile Wallet", "1.0");
-                                var ret = await action.wallet.Sync(client);
-                                return (action.wallet, new APIResult { ResultCode = ret });
+                                var lyraTask = action.wallet.Sync(client);
+
+                                ICoinGeckoClient _client;
+                                _client = CoinGeckoClient.Instance;
+                                const string vsCurrencies = "usd";
+                                var priceTask = _client.SimpleClient.GetSimplePrice(new[] { "bitcoin", "lyra" }, new[] { vsCurrencies });
+
+                                await Task.WhenAll(priceTask, lyraTask);
+
+                                decimal lyraPrice = 0;
+                                if(priceTask.IsCompletedSuccessfully)
+                                {
+                                    lyraPrice = (decimal)priceTask.Result["lyra"]["usd"];
+                                }
+
+                                return (action.wallet, new APIResult { ResultCode = lyraTask.Result }, lyraPrice);
                             }
                             catch (Exception ex)
                             {
-                                return (action.wallet, new APIResult { ResultCode = APIResultCodes.FailedToSyncAccount, ResultMessage = ex.Message });
+                                return (action.wallet, new APIResult { ResultCode = APIResultCodes.FailedToSyncAccount, ResultMessage = ex.Message }, 0);
                             }
                         });
                     })
@@ -267,7 +283,8 @@ namespace LyraWallet.States
                         {
                             wallet = result.wallet,
                             txName = "Refresh Balance",
-                            txResult = result.Item2
+                            txResult = result.Item2,
+                            lyraPrice = result.Item3
                         };
                     })
                     .Catch<object, Exception>(e =>

@@ -19,6 +19,7 @@ namespace LyraWallet.States
 
         public NonFungibleToken NonFungible { get; set; }
         public Dictionary<string, decimal> Balances { get; set; }
+        public decimal LyraPrice { get; set; }
 
         public static RootState InitialState =>
             new RootState

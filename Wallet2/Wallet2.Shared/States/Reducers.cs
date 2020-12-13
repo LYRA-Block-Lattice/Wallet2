@@ -54,6 +54,7 @@ namespace LyraWallet.States
                                 IsOpening = true,
                                 InitRefresh = true,
                                 LastTransactionName = action.txName,
+                                LyraPrice = action.lyraPrice == 0 ? state.LyraPrice : action.lyraPrice,
                                 ErrorMessage = action.txResult.ResultCode == Lyra.Core.Blocks.APIResultCodes.Success ? "" : action.txResult.ResultCode.ToString()
                             });
                         }

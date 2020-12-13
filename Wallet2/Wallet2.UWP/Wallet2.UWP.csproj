@@ -2,6 +2,12 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <ItemGroup>
+    <PackageReference Include="CoinGeckoAsyncApi">
+      <Version>1.3.5</Version>
+    </PackageReference>
+    <PackageReference Include="Lyra.Data">
+      <Version>1.7.11.8</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client">
       <Version>5.2.7</Version>
     </PackageReference>
@@ -11,10 +17,10 @@
 			you need to make sure that the version provided here matches https://github.com/onovotny/MSBuildSdkExtras/blob/master/Source/MSBuild.Sdk.Extras/DefaultItems/ImplicitPackages.targets#L11.
 			This is not an issue when libraries are referenced through nuget packages. See https://github.com/unoplatform/uno/issues/446 for more details.
 			-->
-      <Version>6.2.10</Version>
+      <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Bson">
-      <Version>2.11.3</Version>
+      <Version>2.12.0-beta1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -22,17 +28,17 @@
     <PackageReference Include="ReduxSimple">
       <Version>3.5.1</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Core" Version="2.0.0" />
+    <PackageReference Include="Uno.Core" Version="2.1.0" />
     <PackageReference Include="Uno.Material">
       <Version>1.0.0-dev.578</Version>
     </PackageReference>
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>6.1.0-build.191.gc988bdd4ff</Version>
+      <Version>6.1.0-build.201.gdd585882df</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI" Version="3.2.0-dev.382" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0-rc.2.20475.5" />
+    <PackageReference Include="Uno.UI" Version="3.4.0-dev.306" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.2.0-dev.382" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.4.0-dev.306" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
     </PackageReference>
@@ -172,9 +178,6 @@
   <ItemGroup>
     <Reference Include="dotnetstandard-bip39">
       <HintPath>..\..\..\dotnetstandard-bip39\package\lib\netstandard2.0\dotnetstandard-bip39.dll</HintPath>
-    </Reference>
-    <Reference Include="Lyra.Data">
-      <HintPath>..\..\..\LyraNetwork\Core\Lyra.Data\bin\Debug\netstandard2.0\Lyra.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="..\Wallet2.Shared\Wallet2.Shared.projitems" Label="Shared" Condition="Exists('..\Wallet2.Shared\Wallet2.Shared.projitems')" />

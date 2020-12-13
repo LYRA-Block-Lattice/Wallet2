@@ -93,6 +93,8 @@ namespace Wallet2
                     }
 					);
 				});
+
+			Receive(null, null);
 		}
 
 		private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
@@ -175,16 +177,16 @@ namespace Wallet2
 			Clipboard.SetContent(dataPackage);
 		}
 
-		private double GetMainBalance()
+		private decimal GetMainBalance()
         {
-			return (double)App.Store.State.wallet.MainBalance / 100000000;
+			return App.Store.State.wallet.BaseBalance;
 		}
 		private string GetDollarWorth()
         {
 			if (App.Store.State.wallet == null)
 				return "0.00";
 			else
-				return $"{GetMainBalance() * 0.0026}";
+				return $"{GetMainBalance() * App.Store.State.LyraPrice}";
         }
 
 		private void Backup(object sender, RoutedEventArgs e)

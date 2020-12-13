@@ -9,7 +9,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="All"
+          VerticalAlignment="Stretch" Padding="20" RowSpacing="10" ColumnSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
@@ -19,7 +20,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="70" />
             <ColumnDefinition />
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
@@ -27,24 +28,23 @@
         <CommandBar Grid.Row="0" Grid.ColumnSpan="3" x:Name="CollapsibleCommandBar"
 					Content="Send Funds" />
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Padding="5" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.Column="0" Padding="15" VerticalAlignment="Center">
             <Button Background="Tomato" VerticalAlignment="Center" 
                     CornerRadius="10"
                                 Click="Scan_Click" >
                 <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xED14;"/>
             </Button>
-        </StackPanel>
-        
+        </StackPanel>       
 
         
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="5" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="15" VerticalAlignment="Center">
             <TextBox Height="32" VerticalAlignment="Center" 
                      x:Name="txtAddr"
                      Text="{x:Bind settings.toAddress, Mode=TwoWay}"
                      PlaceholderText="To Wallet Address"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" Padding="5" VerticalAlignment="Center" >
+        <StackPanel Grid.Row="2" Grid.Column="0" Padding="15" VerticalAlignment="Center" >
             <Image
                Source="ms-appx:///Assets/lyraicon50x50.png"
                                Stretch="Uniform"
@@ -52,7 +52,7 @@
 		               VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Padding="5" VerticalAlignment="Center" >
+        <StackPanel Grid.Row="2" Grid.Column="1" Padding="15" VerticalAlignment="Center" >
             <ComboBox VerticalAlignment="Center" Padding="5"
               ItemsSource="{x:Bind tokens}"
               x:Name="Tokens" Width="180"
@@ -60,7 +60,8 @@
               SelectedItem="{x:Bind settings.selectedToken, Mode=TwoWay}" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"
+                    Padding="15">
             <TextBlock Text="2000 LYR" FontSize="12" />
             <TextBlock Grid.Row="1" Text="$10.56" FontSize="12"  />
         </StackPanel>
@@ -79,11 +80,11 @@
             </StackPanel>
             <TextBlock Text="$0.0026" HorizontalAlignment="Right" />
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Padding="15">
             <TextBlock Text="Fee: 1 LYR" />
             <TextBlock Text="Total: 2001 LYR" />
         </StackPanel>
-        <Button Grid.Row="5" Grid.ColumnSpan="3" Content="Send"
+        <Button Grid.Row="5" Grid.ColumnSpan="3" Content="Send" 
                 AllowFocusOnInteraction="True"
 						Click="Send_Click"
 						Style="{StaticResource LoginButtonStyle}" />

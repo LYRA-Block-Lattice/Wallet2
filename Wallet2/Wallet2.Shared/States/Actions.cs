@@ -82,6 +82,7 @@ namespace LyraWallet.States
         public Wallet wallet { get; set; }
         public string txName { get; set; }
         public APIResult txResult { get; set; }
+        public Decimal lyraPrice { get; set; }
     }
 
     public class WalletSendTokenAction : WalletActionBase
