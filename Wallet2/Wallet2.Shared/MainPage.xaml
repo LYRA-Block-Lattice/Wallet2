@@ -72,7 +72,8 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock FontSize="18" FontWeight="Bold" Foreground="White">
-                            My main account
+                            <Run Text="My main account" />
+                            <Run Text="{x:Bind networkId}" />
                         </TextBlock>
 
                         <!-- address and qrcode button -->

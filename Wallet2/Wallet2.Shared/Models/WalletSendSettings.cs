@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lyra.Core.API;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -12,7 +13,21 @@ namespace Wallet2.Shared.Models
         public string selectedToken
         {
             get { return _selectedToken; }
-            set { SetProperty(ref _selectedToken, value); }
+            set { SetProperty(ref _selectedToken, value); Update(); }
+        }
+
+        decimal _selectedTokenInDollar;
+        public decimal SelectedTokenInDollar
+        {
+            get { return _selectedTokenInDollar; }
+            set { SetProperty(ref _selectedTokenInDollar, value); }
+        }
+
+        string _totalStr = string.Empty;
+        public string TotalStr
+        {
+            get { return _totalStr; }
+            set { SetProperty(ref _totalStr, value); }
         }
 
         string _toAddress = string.Empty;
@@ -22,11 +37,49 @@ namespace Wallet2.Shared.Models
             set { SetProperty(ref _toAddress, value); }
         }
 
-        string _amountString = string.Empty;
-        public string amountString
+        decimal _amount;
+        public decimal Amount
         {
-            get { return _amountString; }
-            set { SetProperty(ref _amountString, value); }
+            get { return _amount; }
+            set {
+                SetProperty(ref _amount, value);
+                Update();
+            }
+        }
+
+        decimal _currentBalance;
+        public decimal CurrentBalance
+        {
+            get { return _currentBalance; }
+            set { SetProperty(ref _currentBalance, value); }
+        }
+
+        decimal _currentBalanceInDollar;
+        public decimal CurrentBalanceInDollar
+        {
+            get { return _currentBalanceInDollar; }
+            set { SetProperty(ref _currentBalanceInDollar, value); }
+        }
+
+        private void Update()
+        {
+            if (selectedToken == "LYR")
+            {
+                SelectedTokenInDollar = App.Store.State.LyraPrice * _amount;
+                TotalStr = $"Total: {_amount + 1} LYR";
+
+                CurrentBalance = App.Store.State.wallet.BaseBalance;
+                CurrentBalanceInDollar = App.Store.State.wallet.BaseBalance * App.Store.State.LyraPrice;
+            }
+            else
+            {
+                SelectedTokenInDollar = 0;
+                TotalStr = $"Total: 1 LYR + {Amount} {selectedToken}";
+
+                CurrentBalance = App.Store.State.wallet.GetLatestBlock().Balances[selectedToken] / LyraGlobal.TOKENSTORAGERITO;
+                CurrentBalanceInDollar = 0;
+
+            }
         }
     }
 }

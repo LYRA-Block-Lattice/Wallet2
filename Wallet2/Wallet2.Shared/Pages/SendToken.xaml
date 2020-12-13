@@ -3,11 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Wallet2.Shared.Pages"
+    xmlns:cnvts="using:Wallet2.Shared.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="using:Uno.UI.Toolkit"
+    xmlns:sys="using:System"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <cnvts:DecimalConverter x:Key="DecimalConverter" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="All"
           VerticalAlignment="Stretch" Padding="20" RowSpacing="10" ColumnSpacing="0">
@@ -62,8 +68,8 @@
 
         <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"
                     Padding="15">
-            <TextBlock Text="2000 LYR" FontSize="12" />
-            <TextBlock Grid.Row="1" Text="$10.56" FontSize="12"  />
+            <TextBlock Text="{x:Bind sys:String.Format('{0} LYR', settings.CurrentBalance), Mode=OneWay}" FontSize="12" />
+            <TextBlock Grid.Row="1" Text="{x:Bind sys:String.Format('$ {0:0.00}', settings.CurrentBalanceInDollar), Mode=OneWay}" FontSize="12"  />
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
@@ -72,17 +78,17 @@
                          FontStretch="Expanded"
                          TextAlignment="Right"
                          x:Name="txtAmount"
-                         Text="{x:Bind settings.amountString, Mode=TwoWay}"
+                         Text="{x:Bind settings.Amount, Mode=TwoWay, Converter={StaticResource DecimalConverter}}"
                          PlaceholderText="0" />
                 <TextBlock FontSize="64" VerticalAlignment="Bottom">
-                    <Run Text=" LYR" FontSize="24" />
+                    <Run Text="{x:Bind sys:String.Format(' {0}', settings.selectedToken), Mode=OneWay}" FontSize="24" />
                 </TextBlock>
             </StackPanel>
-            <TextBlock Text="$0.0026" HorizontalAlignment="Right" />
+            <TextBlock Text="{x:Bind sys:String.Format('$ {0:0.00}', settings.SelectedTokenInDollar), Mode=OneWay}" HorizontalAlignment="Right" />
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Padding="15">
             <TextBlock Text="Fee: 1 LYR" />
-            <TextBlock Text="Total: 2001 LYR" />
+            <TextBlock Text="{x:Bind settings.TotalStr, Mode=OneWay}" />
         </StackPanel>
         <Button Grid.Row="5" Grid.ColumnSpan="3" Content="Send" 
                 AllowFocusOnInteraction="True"

@@ -32,6 +32,7 @@ namespace Wallet2
 	{
 		string accountIdShort = string.Empty;
 		string mainBalance = string.Empty;
+		string networkId = string.Empty;
 
 		MobileBarcodeScanner scanner;
 
@@ -76,6 +77,11 @@ namespace Wallet2
                         {
 							accountIdShort = Shorten(App.Store.State.wallet?.AccountId);
 							mainBalance = $"{GetMainBalance()}";
+
+							if (App.Store.State.wallet?.NetworkId == "mainnet")
+								networkId = "";
+							else
+								networkId = $"({App.Store.State.wallet?.NetworkId})";
 
 							Bindings.Update();
 						}
