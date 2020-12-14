@@ -1,4 +1,5 @@
 ﻿using LyraWallet.States;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,6 +65,7 @@ namespace Wallet2
 
 		private void SamplesPage_Loaded(object sender, RoutedEventArgs e)
 		{
+			App.Log.LogInformation("MainPage loaded.");
 			//Frame?.BackStack?.Clear();
 			//SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 			// redux

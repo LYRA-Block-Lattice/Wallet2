@@ -26,7 +26,7 @@
                   Padding="0,30,0,30" Checked="DevChecked" Unchecked="DevUnChecked"
              Content="Developer's Mode" />
 
-            <Button Content="Reset" Click="ResetWallet" Style="{StaticResource MaterialCheckBoxStyle}"
+            <Button Content="Reset" Click="ResetWallet" 
                   Padding="0,30,0,30" />
         </StackPanel>
     </Grid>

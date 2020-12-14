@@ -21,6 +21,8 @@ using System.Threading;
 using Windows.Storage;
 using Windows.UI.Core;
 using Wallet2.Shared.Pages;
+using Microsoft.Extensions.DependencyInjection;
+using Wallet2.Shared.Models;
 
 namespace Wallet2
 {
@@ -30,6 +32,10 @@ namespace Wallet2
     sealed partial class App : Application
     {
         private Frame _rootFrame;
+
+        static ILogger _log;
+
+        public static ILogger Log => _log;
 
         public static IServiceProvider ServiceProvider { get; set; }
 
@@ -46,6 +52,7 @@ namespace Wallet2
         public App()
         {
             //ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+            this.UnhandledException += App_UnhandledException;
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
@@ -66,6 +73,12 @@ namespace Wallet2
                 );
         }
 
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            _log?.LogCritical($"App_UnhandledException: {e.Message}\nInternal Exception: {e.Exception}");
+            e.Handled = true;
+        }
+
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -73,15 +86,33 @@ namespace Wallet2
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            // Create IOC container and add logging feature to it.
+            IServiceCollection services = new ServiceCollection();
+            services.AddLogging();
+
+            // Build provider to access the logging service.
+            IServiceProvider provider = services.BuildServiceProvider();
+
+            // UWP is very restrictive of where you can save files on the disk.
+            // The preferred place to do that is app's local folder.
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            string fullPath = $"{folder.Path}/App.log";
+
+            // Tell the logging service to use Serilog.File extension.
+            var logFac = provider.GetService<ILoggerFactory>();
+            logFac.AddFile(fullPath);
+
+            _log = logFac.CreateLogger("App");
+
 #if __IOS__
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 #endif
-//#if __MACOS__
-//            ZXing.Net.Mobile.Forms.MacOS.Platform.Init();
-//#endif
-//#if NETFX_CORE
-//            ZXing.Net.Mobile.Forms.WindowsUniversal.Platform.Init();
-//#endif
+            //#if __MACOS__
+            //            ZXing.Net.Mobile.Forms.MacOS.Platform.Init();
+            //#endif
+            //#if NETFX_CORE
+            //            ZXing.Net.Mobile.Forms.WindowsUniversal.Platform.Init();
+            //#endif
 
 
             // Set a default palette to make sure all colors used by MaterialResources exist

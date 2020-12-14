@@ -222,7 +222,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left"
+                               Tapped="GoSettings" >
                         Settings and support
                     </TextBlock>
                     <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Right"
