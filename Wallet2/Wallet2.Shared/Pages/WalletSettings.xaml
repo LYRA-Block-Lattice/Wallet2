@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20">
+    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All" Padding="20" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,10 +21,13 @@
             <skia:Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
             <CommandBar Content="Settings" />
         </StackPanel>        
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
             <CheckBox Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
                   Padding="0,30,0,30" Checked="DevChecked" Unchecked="DevUnChecked"
              Content="Developer's Mode" />
+
+            <Button Content="Reset" Click="ResetWallet" Style="{StaticResource MaterialCheckBoxStyle}"
+                  Padding="0,30,0,30" />
         </StackPanel>
     </Grid>
 </Page>

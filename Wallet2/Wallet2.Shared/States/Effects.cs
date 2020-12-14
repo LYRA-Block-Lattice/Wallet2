@@ -3,7 +3,6 @@ using CoinGecko.Interfaces;
 using Lyra.Core.Accounts;
 using Lyra.Core.API;
 using Lyra.Core.Blocks;
-using Microsoft.Toolkit.Uwp.UI;
 using ReduxSimple;
 using System;
 using System.Collections.Generic;

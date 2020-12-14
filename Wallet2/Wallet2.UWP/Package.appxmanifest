@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b7865b6a-e657-4848-b871-225d6ce84c21"
-    Publisher="CN=Wizard"
-    Version="1.0.0.0" />
+    Name="14715Wizd.LyraWallet"
+    Publisher="CN=3FD7DFD0-9200-4032-B346-D84758DCAB50"
+    Version="1.0.10.0" />
 
-  <mp:PhoneIdentity PhoneProductId="bda81f9a-030b-458c-aafa-c84c384fd25f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="560d23b3-64e8-4b7b-967f-028748ef8eb0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Wallet2</DisplayName>
-    <PublisherDisplayName>Wallet2</PublisherDisplayName>
+    <DisplayName>LyraWallet</DisplayName>
+    <PublisherDisplayName>Wizd</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="Wallet2.exe"
       EntryPoint="Wallet2.App">
       <uap:VisualElements
-        DisplayName="Wallet2"
+        DisplayName="LyraWallet"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Wallet2"

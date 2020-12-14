@@ -73,7 +73,7 @@ namespace Wallet2
 					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
 					() =>
 					{
-						if(App.Store.State.IsOpening)
+						if(App.Store.State.IsOpening && App.Store.State.wallet != null)
                         {
 							accountIdShort = Shorten(App.Store.State.wallet?.AccountId);
 							mainBalance = $"{GetMainBalance()}";
@@ -99,8 +99,6 @@ namespace Wallet2
                     }
 					);
 				});
-
-			Receive(null, null);
 		}
 
 		private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
