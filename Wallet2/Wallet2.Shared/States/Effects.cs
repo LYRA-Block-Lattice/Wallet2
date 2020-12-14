@@ -262,7 +262,7 @@ namespace LyraWallet.States
                                 await Task.WhenAll(priceTask, lyraTask);
 
                                 decimal lyraPrice = 0;
-                                if(priceTask.IsCompletedSuccessfully)
+                                if(!priceTask.IsFaulted)
                                 {
                                     lyraPrice = (decimal)priceTask.Result["lyra"]["usd"];
                                 }

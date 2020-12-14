@@ -6,7 +6,7 @@
     "WSL 2": {
       "commandName": "WSL2",
       "environmentVariables": {
-        "DISPLAY": "172.25.128.1:0"
+        "DISPLAY": "172.26.0.1:0"
       },
       "distributionName": ""
     }
