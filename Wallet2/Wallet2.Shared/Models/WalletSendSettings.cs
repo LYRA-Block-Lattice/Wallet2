@@ -71,14 +71,21 @@ namespace Wallet2.Shared.Models
                 CurrentBalance = App.Store.State.wallet.BaseBalance;
                 CurrentBalanceInDollar = App.Store.State.wallet.BaseBalance * App.Store.State.LyraPrice;
             }
-            else
+            else if(!string.IsNullOrWhiteSpace(selectedToken))
             {
                 SelectedTokenInDollar = 0;
                 TotalStr = $"Total: 1 LYR + {Amount} {selectedToken}";
 
-                CurrentBalance = App.Store.State.wallet.GetLatestBlock().Balances[selectedToken] / LyraGlobal.TOKENSTORAGERITO;
+                var blk = App.Store.State.wallet.GetLatestBlock();
+                if(blk != null && blk.Balances.ContainsKey(selectedToken))
+                {
+                    CurrentBalance = blk.Balances[selectedToken] / LyraGlobal.TOKENSTORAGERITO;
+                }
+                else
+                {
+                    CurrentBalance = 0;
+                }
                 CurrentBalanceInDollar = 0;
-
             }
         }
     }
