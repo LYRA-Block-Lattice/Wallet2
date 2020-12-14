@@ -52,9 +52,6 @@
     <PackageReference Include="Uno.UI">
       <Version>3.4.0-dev.306</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl">
-      <Version>3.4.0-dev.306</Version>
-    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
     </PackageReference>
@@ -65,7 +62,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{B7865B6A-E657-4848-B871-225D6CE84C21}</ProjectGuid>
+    <ProjectGuid>{0A316C3A-B26F-48DC-9D75-784336CD134B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Wallet2</RootNamespace>
