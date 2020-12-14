@@ -88,17 +88,25 @@ namespace Wallet2.Shared.Pages
 
         private void RestoreFor(string networkId)
         {
-            if (tboxes.Any(a => string.IsNullOrWhiteSpace(a.Text)))
-                return;
+            string lyraKey;
+            if(!string.IsNullOrWhiteSpace(txtPrivateKey.Text))
+            {
+                lyraKey = txtPrivateKey.Text;
+            }
+            else
+            {
+                if (tboxes.Any(a => string.IsNullOrWhiteSpace(a.Text)))
+                    return;
 
-            var words = string.Join(" ", tboxes.Select(a => a.Text));
+                var words = string.Join(" ", tboxes.Select(a => a.Text));
 
-            var bip39 = new BIP39();
-            var recovered = bip39.MnemonicToEntropy(words, BIP39Wordlist.English);
+                var bip39 = new BIP39();
+                var recovered = bip39.MnemonicToEntropy(words, BIP39Wordlist.English);
 
-            var privateKey = StringToByteArray(recovered);
+                var privateKey = StringToByteArray(recovered);
 
-            var lyraKey = Base58Encoding.EncodePrivateKey(privateKey);
+                lyraKey = Base58Encoding.EncodePrivateKey(privateKey);
+            }
 
             Frame.Navigate(typeof(WalletCreatePassword), new WalletCreateSettings { network = networkId, restoreKey = lyraKey });
         }

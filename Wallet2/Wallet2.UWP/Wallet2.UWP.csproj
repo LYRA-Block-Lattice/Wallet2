@@ -52,6 +52,9 @@
     <PackageReference Include="Uno.UI">
       <Version>3.4.0-dev.306</Version>
     </PackageReference>
+    <PackageReference Include="Uno.UI.RemoteControl">
+      <Version>3.4.0-dev.306</Version>
+    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
     </PackageReference>

@@ -16,18 +16,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+       
         <!-- Header -->
         <StackPanel>
-            <skia:Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
-            <CommandBar Content="Settings" />
+            <!--<skia:Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>-->
+            <CommandBar x:Name="CollapsibleCommandBar" Content="Settings" />
         </StackPanel>        
+        
         <StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
             <CheckBox Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
                   Padding="0,30,0,30" Checked="DevChecked" Unchecked="DevUnChecked"
-             Content="Developer's Mode" />
-
-            <Button Content="Reset" Click="ResetWallet" 
-                  Padding="0,30,0,30" />
+             Content="Developer Mode" />
+            <Button Content="Reset Wallet"
+                    Click="ResetWallet" Style="{StaticResource MaterialContainedButtonStyle}" />
         </StackPanel>
     </Grid>
 </Page>
