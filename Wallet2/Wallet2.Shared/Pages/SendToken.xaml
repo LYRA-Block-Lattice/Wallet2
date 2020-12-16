@@ -28,7 +28,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="180"/>
         </Grid.ColumnDefinitions>
         
         <CommandBar Grid.Row="0" Grid.ColumnSpan="3" x:Name="CollapsibleCommandBar"
