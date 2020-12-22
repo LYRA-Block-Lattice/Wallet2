@@ -37,9 +37,6 @@
     <PackageReference Include="ReduxSimple">
       <Version>3.5.1</Version>
     </PackageReference>
-    <PackageReference Include="Serilog.Extensions.Logging.File">
-      <Version>2.0.0</Version>
-    </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>5.0.0</Version>
     </PackageReference>
@@ -50,7 +47,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
     <PackageReference Include="Uno.UI">
-      <Version>3.4.0-dev.306</Version>
+      <Version>3.4.0-dev.413</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
@@ -81,7 +78,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppInstallerUri>https://nebula.lyra.live/apps</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateThumbprint>2EF2D05EFEEA4447FB80F72AF1E563A8F6A3D194</PackageCertificateThumbprint>

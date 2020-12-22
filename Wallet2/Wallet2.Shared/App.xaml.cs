@@ -23,6 +23,7 @@ using Windows.UI.Core;
 using Wallet2.Shared.Pages;
 using Microsoft.Extensions.DependencyInjection;
 using Wallet2.Shared.Models;
+using System.Threading.Tasks;
 
 namespace Wallet2
 {
@@ -35,7 +36,7 @@ namespace Wallet2
 
         static ILogger _log;
 
-        public static ILogger Log => _log;
+        //public static ILogger Log => _log;
 
         public static IServiceProvider ServiceProvider { get; set; }
 
@@ -86,23 +87,26 @@ namespace Wallet2
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            // Create IOC container and add logging feature to it.
-            IServiceCollection services = new ServiceCollection();
-            services.AddLogging();
+            //var tsk = Task.Run(() => {
+            //    // Create IOC container and add logging feature to it.
+            //    IServiceCollection services = new ServiceCollection();
+            //    services.AddLogging();
 
-            // Build provider to access the logging service.
-            IServiceProvider provider = services.BuildServiceProvider();
+            //    // Build provider to access the logging service.
+            //    IServiceProvider provider = services.BuildServiceProvider();
 
-            // UWP is very restrictive of where you can save files on the disk.
-            // The preferred place to do that is app's local folder.
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            string fullPath = $"{folder.Path}/App.log";
+            //    // UWP is very restrictive of where you can save files on the disk.
+            //    // The preferred place to do that is app's local folder.
+            //    StorageFolder folder = ApplicationData.Current.LocalFolder;
+            //    string fullPath = $"{folder.Path}/App.log";
 
-            // Tell the logging service to use Serilog.File extension.
-            var logFac = provider.GetService<ILoggerFactory>();
-            logFac.AddFile(fullPath);
+            //    // Tell the logging service to use Serilog.File extension.
+            //    var logFac = provider.GetService<ILoggerFactory>();
+            //    logFac.AddFile(fullPath);
 
-            _log = logFac.CreateLogger("App");
+            //    _log = logFac.CreateLogger("App");
+            //});
+            //Task.WaitAll(tsk);
 
 #if __IOS__
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
@@ -160,7 +164,8 @@ namespace Wallet2
                     var dataPath = ApplicationData.Current.LocalFolder.Path;
                     var fn = $"{dataPath}/default.lyrawallet";
 
-                    Type typEntry;
+                    Type typEntry = null;
+
                     if (!File.Exists(fn) || (App.Store.State?.IsOpening ?? false))
                         typEntry = typeof(MainPage);
                     else

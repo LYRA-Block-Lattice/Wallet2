@@ -65,7 +65,16 @@ namespace Wallet2
 
 		private void SamplesPage_Loaded(object sender, RoutedEventArgs e)
 		{
-			App.Log.LogInformation("MainPage loaded.");
+			if (App.Store.State.wallet != null)
+			{
+				withoutWallet.Visibility = Visibility.Collapsed;
+				withWallet.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				withoutWallet.Visibility = Visibility.Visible;
+				withWallet.Visibility = Visibility.Collapsed;
+			}
 			//Frame?.BackStack?.Clear();
 			//SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 			// redux

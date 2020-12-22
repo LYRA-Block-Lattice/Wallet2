@@ -58,20 +58,29 @@ namespace Wallet2.Shared.Pages
         {
             // TODO: add argument check here
             string errMsg = null;
-            if(settings.selectedToken == "LYR")
+
+            var lb = App.Store.State.wallet?.GetLatestBlock();
+            if (!App.Store.State.IsOpening || lb == null || !lb.Balances.ContainsKey("LYR"))
             {
-                if (settings.Amount + 1 > App.Store.State.wallet.GetLatestBlock().Balances[settings.selectedToken])
-                    errMsg = "Not enough balance.";
-            }
+                errMsg = "Wallet not open or empty";
+            }                
             else
             {
-                if (1 > App.Store.State.wallet.GetLatestBlock().Balances[settings.selectedToken])
-                    errMsg = "Not enough balance.";
+                if (settings.selectedToken == "LYR")
+                {
+                    if (settings.Amount + 1 > lb.Balances[settings.selectedToken])
+                        errMsg = "Not enough balance.";
+                }
+                else
+                {
+                    if (1 > lb.Balances[settings.selectedToken])
+                        errMsg = "Not enough balance.";
+                }
+                if (string.IsNullOrEmpty(settings.toAddress))
+                    errMsg = "Invalid to address";
+                else if (settings.Amount <= 0)
+                    errMsg = "Amount must > 0";
             }
-            if (string.IsNullOrEmpty(settings.toAddress))
-                errMsg = "Invalid to address";
-            else if (settings.Amount <= 0)
-                errMsg = "Amount must > 0";
 
             if(errMsg != null)
             {
