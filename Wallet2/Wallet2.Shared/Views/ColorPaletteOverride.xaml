@@ -9,7 +9,7 @@
 	
 	-->
     <ResourceDictionary.ThemeDictionaries>
-        <!-- Light Theme -->
+        <!-- Light Theme -->        
         <ResourceDictionary x:Key="Light">
             <Color x:Key="MaterialPrimaryColor">#5B4CF5</Color>
             <Color x:Key="MaterialPrimaryVariantDarkColor">#353FE5</Color>
@@ -26,6 +26,14 @@
             <Color x:Key="MaterialOnSurfaceColor">#000000</Color>
             <Color x:Key="MaterialOnErrorColor">#000000</Color>
             <Color x:Key="MaterialOverlayColor">#51000000</Color>
+            <Color x:Key="PrimaryColor">#607D8B</Color>
+            <Color x:Key="PrimaryDarkColor">#455A64</Color>
+            <Color x:Key="PrimaryLightColor">#CFD8DC</Color>
+            <Color x:Key="TextColor">#FFFFFF</Color>
+            <Color x:Key="AccentColor">#FFC107</Color>
+            <Color x:Key="PrimaryTextColor">#212121</Color>
+            <Color x:Key="SecondaryTextColor">#757575</Color>
+            <Color x:Key="DeviderColor">#BDBDBD</Color>
         </ResourceDictionary>
 
         <!-- Dark Theme -->

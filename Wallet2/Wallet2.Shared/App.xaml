@@ -13,7 +13,7 @@
 
                 <!-- Application's custom styles -->
                 <!-- other ResourceDictionaries -->
-                
+
                 <ResourceDictionary Source="CodeBox.xaml" />
                 <ResourceDictionary Source="DefaultStyles.xaml" />
                 <ResourceDictionary Source="Styles/_Styles.xaml" />
