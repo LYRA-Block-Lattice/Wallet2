@@ -8,7 +8,7 @@
     xmlns:extensions="using:Uno.Material.Extensions"
     xmlns:converters="using:Wallet2.Shared.Converters"
     xmlns:material="using:Uno.Material.Controls"
-    xmlns:controls="using:Uno.Material.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:toolkit="using:Uno.UI.Toolkit"
     mc:Ignorable="d">
 
@@ -17,10 +17,10 @@
         <converters:BalanceConverter x:Key="BalanceConverter" />
 
         <Style x:Key="MaterialBottomNavigationBarStyle"
-		   TargetType="controls:BottomNavigationBar">
+		   TargetType="material:BottomNavigationBar">
 
             <Setter Property="Background"
-				Value="DarkCyan" />
+				Value="DarkGray" />
             <Setter Property="Foreground"
 				Value="{StaticResource MaterialBottomNavForegroundBrush}" />
             <Setter Property="Height"
@@ -30,7 +30,7 @@
 
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="controls:BottomNavigationBar">
+                    <ControlTemplate TargetType="material:BottomNavigationBar">
                         <Grid x:Name="PART_LayoutRoot"
 						  Height="64"
 						  Background="{TemplateBinding Background}"/>
@@ -39,7 +39,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="controls:BottomNavigationBar"
+        <Style TargetType="material:BottomNavigationBar"
 		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />
 
     </Page.Resources>
@@ -49,7 +49,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid MaxWidth="450" Padding="10">
             <Grid.ColumnDefinitions>
@@ -242,7 +243,13 @@
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel Visibility="Collapsed" Grid.Row="2" Background="Aquamarine">
+        <StackPanel Grid.Row="2" VerticalAlignment="Stretch">
+            <muxc:InfoBar x:Name="UpdateAvailableNotification"
+    Title="Update available."
+    Message="Restart the application to apply the latest update.">
+            </muxc:InfoBar>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Background="Aquamarine">
             <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
                 <material:BottomNavigationBar.Items>
                     <material:BottomNavigationBarItem Label=" ">

@@ -51,6 +51,7 @@ namespace Wallet2
 			scanner.OnCameraError += Scanner_OnCameraError;
 			scanner.OnCameraInitialized += Scanner_OnCameraInitialized; ;
 #endif
+			UpdateAvailableNotification.IsOpen = true;
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
