@@ -71,7 +71,17 @@ namespace Wallet2
 			//Frame?.BackStack?.Clear();
 			//SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 			// redux
-			_ = App.Store.Select(state => state.IsChanged)
+			_ = App.Store.Select(state => state.IsBusy)
+				.Subscribe(async w =>
+				{
+					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+					() =>
+					{
+						InProgressNotification.IsOpen = w;
+					});					
+				});
+
+		_ = App.Store.Select(state => state.IsChanged)
 				.Subscribe(async w =>
 				{
 					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,

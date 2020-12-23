@@ -8,6 +8,7 @@ namespace LyraWallet.States
 {
     public class RootState
     {
+        public bool IsBusy { get; set; }
         public string IsChanged { get; set; }
         public bool IsOpening { get; set; }
         public bool InitRefresh { get; set; }
@@ -24,6 +25,7 @@ namespace LyraWallet.States
         public static RootState InitialState =>
             new RootState
             {
+                IsBusy = false,
                 IsChanged = null,
                 IsOpening = false,
                 wallet = null,

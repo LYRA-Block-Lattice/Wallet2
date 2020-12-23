@@ -15,10 +15,62 @@ namespace LyraWallet.States
         {
             return new List<On<RootState>>
                 {
+                    // input actions
+                    On<WalletOpenAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletOpenAndSyncAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletCreateAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletRestoreAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletRemoveAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletRefreshBalanceAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    On<WalletSendTokenAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
+                    // result actions
                     On<WalletOpenResultAction, RootState>(
                         (state, action) => {
                             var lb = action.wallet?.GetLatestBlock();
                             return state.With(new {
+                                IsBusy = false,
                                 IsChanged = Guid.NewGuid().ToString(),
                                 wallet = action.wallet,
                                 NonFungible = lb?.NonFungibleToken,
@@ -33,6 +85,7 @@ namespace LyraWallet.States
                         (state, action) => {
                             var lb = action.wallet?.GetLatestBlock();
                             return state.With(new {
+                                IsBusy = false,
                                 IsChanged = Guid.NewGuid().ToString(),
                                 wallet = action.wallet,
                                 NonFungible = lb?.NonFungibleToken,
@@ -47,6 +100,7 @@ namespace LyraWallet.States
                         (state, action) => {
                             var lb = action.wallet?.GetLatestBlock();
                             return state.With(new {
+                                IsBusy = false,
                                 IsChanged = Guid.NewGuid().ToString(),
                                 wallet = action.wallet,
                                 NonFungible = lb?.NonFungibleToken,
@@ -63,6 +117,7 @@ namespace LyraWallet.States
                         (state, action) => {
                             var lb = action.wallet?.GetLatestBlock();
                             return state.With(new {
+                                IsBusy = false,
                                 IsChanged = Guid.NewGuid().ToString(),
                                 LastTransactionName = "Redemption Code",
                                 ErrorMessage = $"{action.name} Discount: {action.denomination.ToString("C")} Redemption Code: {action.redemptionCode}"
@@ -73,6 +128,7 @@ namespace LyraWallet.States
                         (state, action) => 
                         {
                             return state.With(new {
+                                IsBusy = false,
                                 IsChanged = Guid.NewGuid().ToString(),
                                 ErrorMessage = action.Error.Message
                             });
