@@ -20,7 +20,7 @@
 		   TargetType="material:BottomNavigationBar">
 
             <Setter Property="Background"
-				Value="DarkGray" />
+				Value="Black" />
             <Setter Property="Foreground"
 				Value="{StaticResource MaterialBottomNavForegroundBrush}" />
             <Setter Property="Height"
@@ -65,7 +65,7 @@
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
                 <StackPanel x:Name="withWallet" Visibility="Visible">
-                    <Grid Background="DarkCyan" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
+                    <Grid Background="LightSeaGreen" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -134,28 +134,6 @@
                         ● +
                         </TextBlock>
                         <TextBlock Grid.Column="1" FontSize="12" HorizontalAlignment="Right">Manage accounts <Bold>&gt;</Bold></TextBlock>
-                    </Grid>
-                    <!-- backup notify -->
-                    <Grid Padding="10" Background="LightYellow" CornerRadius="20" MaxWidth="450"
-                          RowSpacing="8" ColumnSpacing="8">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Glyph="&#xea18;" Foreground="Red" />
-                        <TextBlock Grid.Column="1" Text="Action required: not backed up" 
-                                   FontSize="24" FontWeight="Bold" TextWrapping="Wrap" />
-                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="14" TextWrapping="Wrap"
-                                   Text="If your device gets lost or stolen, or if there's an unexpected hardware error, you will loose your funds forever." />
-                        <Button Grid.Column="1" Grid.Row="2" Content="Back up now"
-                            AllowFocusOnInteraction="True"
-						    Click="Backup"
-						     />
                     </Grid>
                 </StackPanel>
                 <StackPanel x:Name="withoutWallet" Visibility="Collapsed">
@@ -244,12 +222,28 @@
             </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Row="2" VerticalAlignment="Stretch">
+            <muxc:InfoBar x:Name="InProgressNotification"
+    Title="Work in progress"  
+    Message="Please be patient..."
+    IsClosable="False">
+                <muxc:InfoBar.Content>
+                    <ProgressBar IsIndeterminate="True" Margin="0,0,0,6"/>
+                </muxc:InfoBar.Content>
+            </muxc:InfoBar>
+            <muxc:InfoBar x:Name="BackupNotification"
+    Severity="Warning"
+    Title="Action required: not backed up"  
+    Message="If your device gets lost or stolen, or if there's an unexpected hardware error, you will loose your funds forever.">
+                <muxc:InfoBar.ActionButton>
+                    <Button Content="Back up now" Click="Backup" />
+                </muxc:InfoBar.ActionButton>
+            </muxc:InfoBar>
             <muxc:InfoBar x:Name="UpdateAvailableNotification"
     Title="Update available."
     Message="Restart the application to apply the latest update.">
             </muxc:InfoBar>
         </StackPanel>
-        <StackPanel Grid.Row="3" Background="Aquamarine">
+        <StackPanel Grid.Row="3">
             <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
                 <material:BottomNavigationBar.Items>
                     <material:BottomNavigationBarItem Label=" ">

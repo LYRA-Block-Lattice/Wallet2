@@ -79,6 +79,9 @@ namespace Wallet2.Shared.Pages
                     await Task.Delay(100);
                 }
 
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["backup"] = "false";
+
                 Frame.Navigate(typeof(MainPage));
             }
         }

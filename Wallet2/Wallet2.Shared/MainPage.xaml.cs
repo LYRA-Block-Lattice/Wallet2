@@ -10,6 +10,7 @@ using Wallet2.Shared.Pages;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -51,7 +52,6 @@ namespace Wallet2
 			scanner.OnCameraError += Scanner_OnCameraError;
 			scanner.OnCameraInitialized += Scanner_OnCameraInitialized; ;
 #endif
-			UpdateAvailableNotification.IsOpen = true;
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,16 +66,8 @@ namespace Wallet2
 
 		private void SamplesPage_Loaded(object sender, RoutedEventArgs e)
 		{
-			if (App.Store.State.wallet != null)
-			{
-				withoutWallet.Visibility = Visibility.Collapsed;
-				withWallet.Visibility = Visibility.Visible;
-			}
-			else
-			{
-				withoutWallet.Visibility = Visibility.Visible;
-				withWallet.Visibility = Visibility.Collapsed;
-			}
+			WalletChanged();
+
 			//Frame?.BackStack?.Clear();
 			//SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 			// redux
@@ -98,19 +90,29 @@ namespace Wallet2
 							Bindings.Update();
 						}
 
-                        if (App.Store.State.wallet != null)
-                        {
-                            withoutWallet.Visibility = Visibility.Collapsed;
-                            withWallet.Visibility = Visibility.Visible;
-                        }
-                        else
-                        {
-							withoutWallet.Visibility = Visibility.Visible;
-							withWallet.Visibility = Visibility.Collapsed;
-                        }
+						WalletChanged();
                     }
 					);
 				});
+		}
+
+		private void WalletChanged()
+        {
+			if (App.Store.State.wallet != null)
+			{
+				withoutWallet.Visibility = Visibility.Collapsed;
+				withWallet.Visibility = Visibility.Visible;
+
+				// backup notify
+				var localSettings = ApplicationData.Current.LocalSettings;
+				BackupNotification.IsOpen = !("ture" == localSettings.Values["backup"]?.ToString());
+			}
+			else
+			{
+				withoutWallet.Visibility = Visibility.Visible;
+				withWallet.Visibility = Visibility.Collapsed;
+				BackupNotification.IsOpen = false;
+			}
 		}
 
 		private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)

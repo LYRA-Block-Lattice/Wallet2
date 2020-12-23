@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -104,6 +105,9 @@ namespace Wallet2.Shared.Pages
                     {
                         await Task.Delay(100);
                     }
+
+                    var localSettings = ApplicationData.Current.LocalSettings;
+                    localSettings.Values["backup"] = "false";
 
                     Frame.Navigate(typeof(MainPage));
                 }

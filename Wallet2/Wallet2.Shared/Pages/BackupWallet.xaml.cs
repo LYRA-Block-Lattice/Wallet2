@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -80,6 +81,9 @@ namespace Wallet2.Shared.Pages
 
         private void wroten(object sender, RoutedEventArgs e)
         {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["backup"] = "ture";
+
             Frame.Navigate(typeof(MainPage));
         }
     }
