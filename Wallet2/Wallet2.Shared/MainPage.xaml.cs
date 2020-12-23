@@ -2,10 +2,12 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Wallet2.Shared.Models;
 using Wallet2.Shared.Pages;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
@@ -38,6 +40,8 @@ namespace Wallet2
 
 		MobileBarcodeScanner scanner;
 
+		public ObservableCollection<TxInfo> Items { get; set; }
+
 		public MainPage()
 		{
 			this.InitializeComponent();
@@ -52,6 +56,9 @@ namespace Wallet2
 			scanner.OnCameraError += Scanner_OnCameraError;
 			scanner.OnCameraInitialized += Scanner_OnCameraInitialized; ;
 #endif
+
+			Items = new ObservableCollection<TxInfo>();
+			DataContext = Items;
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -81,7 +88,22 @@ namespace Wallet2
 					});					
 				});
 
-		_ = App.Store.Select(state => state.IsChanged)
+			_ = App.Store.Select(state => state.Txs)
+				.Subscribe(async w =>
+				{
+					if (w == null) return;
+					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+					() =>
+					{
+						Items.Clear();
+						foreach (var item in w.Take(3))
+						{
+							Items.Add(item);
+						}
+					});
+				});
+
+			_ = App.Store.Select(state => state.IsChanged)
 				.Subscribe(async w =>
 				{
 					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -96,6 +118,16 @@ namespace Wallet2
 								networkId = "";
 							else
 								networkId = $"({App.Store.State.wallet?.NetworkId})";
+
+							if(App.Store.State.wallet.BaseBalance != 0 && App.Store.State.LastTransactionName != "Get Transaction History")
+                            {
+								var oAct = new WalletGetTxHistoryAction
+								{
+									wallet = App.Store.State.wallet,
+									Count = 3
+								};
+								_ = Task.Run(() => { App.Store.Dispatch(oAct); });
+							}
 
 							Bindings.Update();
 						}
@@ -214,7 +246,7 @@ namespace Wallet2
 			if (App.Store.State.wallet == null)
 				return "0.00";
 			else
-				return $"{GetMainBalance() * App.Store.State.LyraPrice}";
+				return (GetMainBalance() * App.Store.State.LyraPrice).ToString("0.##");
         }
 
 		private void Backup(object sender, RoutedEventArgs e)

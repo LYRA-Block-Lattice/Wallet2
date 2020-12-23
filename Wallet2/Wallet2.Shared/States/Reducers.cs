@@ -124,6 +124,17 @@ namespace LyraWallet.States
                             });
                         }
                     ),
+                    On<WalletGetTxHistoryResultAction, RootState>(
+                        (state, action) => {
+                            var lb = action.wallet?.GetLatestBlock();
+                            return state.With(new {
+                                IsBusy = false,
+                                IsChanged = Guid.NewGuid().ToString(),
+                                LastTransactionName = "Get Transaction History",
+                                Txs = action.Txs
+                            });
+                        }
+                    ),
                     On<WalletErrorAction, RootState>(
                         (state, action) => 
                         {

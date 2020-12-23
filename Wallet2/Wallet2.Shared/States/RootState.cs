@@ -3,6 +3,7 @@ using Lyra.Core.Blocks;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Wallet2.Shared.Models;
 
 namespace LyraWallet.States
 {
@@ -13,7 +14,7 @@ namespace LyraWallet.States
         public bool IsOpening { get; set; }
         public bool InitRefresh { get; set; }
         public Wallet wallet { get; set; }
-        public List<string> txs { get; set; }
+        public List<TxInfo> Txs { get; set; }
 
         public string LastTransactionName { get; set; }
         public string ErrorMessage { get; set; }
@@ -29,7 +30,7 @@ namespace LyraWallet.States
                 IsChanged = null,
                 IsOpening = false,
                 wallet = null,
-                txs = null,
+                Txs = null,
                 ErrorMessage = null,
             };
     }

@@ -66,6 +66,7 @@ namespace Wallet2
                 LyraWallet.States.Effects.RemoveWalletEffect,
                 LyraWallet.States.Effects.ChangeVoteWalletEffect,
                 LyraWallet.States.Effects.RefreshWalletEffect,
+                LyraWallet.States.Effects.GetTxHistoryEffect,
                 LyraWallet.States.Effects.SendTokenWalletEffect,
                 LyraWallet.States.Effects.CreateTokenWalletEffect,
                 LyraWallet.States.Effects.ImportWalletEffect,

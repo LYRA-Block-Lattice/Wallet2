@@ -6,11 +6,13 @@ using Lyra.Core.Blocks;
 using ReduxSimple;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wallet2;
+using Wallet2.Shared.Models;
 
 namespace LyraWallet.States
 {
@@ -296,6 +298,43 @@ namespace LyraWallet.States
                 true
             );
 
+        public static Effect<RootState> GetTxHistoryEffect = ReduxSimple.Effects.CreateEffect<RootState>
+            (
+                () => App.Store.ObserveAction<WalletGetTxHistoryAction>()
+                    .Select(action =>
+                    {
+                        return Observable.StartAsync(async () => {
+                            try
+                            {
+                                var txs = await GetBlocks(action.Count);
+
+                                return (action.wallet, txs);
+                            }
+                            catch (Exception ex)
+                            {
+                                return (action.wallet, null);
+                            }
+                        });
+                    })
+                    .Switch()
+                    .Select(result =>
+                    {
+                        return new WalletGetTxHistoryResultAction
+                        {
+                            wallet = result.wallet,
+                            Txs = result.txs
+                        };
+                    })
+                    .Catch<object, Exception>(e =>
+                    {
+                        return Observable.Return(new WalletErrorAction
+                        {
+                            Error = e
+                        });
+                    }),
+                true
+            );
+
         public static Effect<RootState> SendTokenWalletEffect = ReduxSimple.Effects.CreateEffect<RootState>
             (
                 () => App.Store.ObserveAction<WalletSendTokenAction>()
@@ -490,5 +529,80 @@ namespace LyraWallet.States
                     }),
                 true
             );
+
+        private static async Task<List<TxInfo>> GetBlocks(int count)
+        {
+            var blocks = new List<TxInfo>();
+            var height = App.Store.State.wallet.GetLocalAccountHeight();
+
+            Dictionary<string, long> oldBalance = null;
+            for (long i = height - count - 1; i <= height; i++)
+            {
+                var blockResult = await App.Store.State.wallet.GetBlockByIndex(i);
+                var block = blockResult;
+                if (block == null)
+                { }
+                else
+                {
+                    string action = "", account = "";
+                    if (block is SendTransferBlock sb)
+                    {
+                        action = $"Send";
+                        account = sb.DestinationAccountId;
+                    }
+                    else if (block is ReceiveTransferBlock rb)
+                    {
+                        if (rb.SourceHash == null)
+                        {
+                            action = $"Genesis";
+                            account = "";
+                        }
+                        else
+                        {
+                            var srcBlockResult = await App.Store.State.wallet.GetBlockByHash(rb.SourceHash);
+                            var srcBlock = srcBlockResult;
+                            action = $"Receive";
+                            account = srcBlock.AccountID;
+                        }
+                    }
+
+                    blocks.Add(new TxInfo()
+                    {
+                        index = block.Height,
+                        timeStamp = block.TimeStamp,
+                        hash = block.Hash,
+                        type = block.BlockType.ToString(),
+                        balance = block.Balances.Aggregate(new StringBuilder(),
+                          (sbd, kvp) => sbd.AppendFormat("{0}{1} = {2}",
+                                       sbd.Length > 0 ? ", " : "", kvp.Key, kvp.Value.ToBalanceDecimal()),
+                          sbd => sbd.ToString()),
+
+                        action = action,
+                        account = account,
+                        diffrence = BalanceDifference(oldBalance, block.Balances)
+                    });
+
+                    oldBalance = block.Balances;
+                }
+            }
+
+            blocks.Reverse();
+            return blocks;
+        }
+
+        private static string BalanceDifference(Dictionary<string, long> oldBalance, Dictionary<string, long> newBalance)
+        {
+            if (oldBalance == null)
+            {
+                return string.Join(", ", newBalance.Select(m => $"{m.Key} {m.Value.ToBalanceDecimal()}"));
+            }
+            else
+            {
+                var diff = newBalance.Where(x => (x.Value - (oldBalance.ContainsKey(x.Key) ? oldBalance[x.Key] : 0)) != 0)
+                    .ToDictionary(p => p.Key, p => p.Value);
+
+                return string.Join(", ", diff.Select(m => $"{m.Key} {(decimal)(m.Value - (oldBalance.ContainsKey(m.Key) ? oldBalance[m.Key] : 0)) / LyraGlobal.TOKENSTORAGERITO}"));
+            }
+        }
     }
 }

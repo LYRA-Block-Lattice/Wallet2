@@ -4,6 +4,7 @@ using Lyra.Core.Blocks;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Wallet2.Shared.Models;
 
 namespace LyraWallet.States
 {
@@ -77,6 +78,8 @@ namespace LyraWallet.States
 
     public class WalletRefreshBalanceAction : WalletActionBase { public Wallet wallet { get; set; } }
 
+    public class WalletGetTxHistoryAction : WalletActionBase { public Wallet wallet { get; set; } public int Count { get; set; } }
+    public class WalletGetTxHistoryResultAction { public Wallet wallet { get; set; } public List<TxInfo> Txs { get; set; } }
     public class WalletTransactionResultAction
     {
         public Wallet wallet { get; set; }

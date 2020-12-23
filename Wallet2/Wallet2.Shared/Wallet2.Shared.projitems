@@ -30,6 +30,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TxInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalletSendSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalletCreateSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\BackupWallet.xaml.cs">
