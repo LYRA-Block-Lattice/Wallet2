@@ -91,17 +91,26 @@ namespace Wallet2
 			_ = App.Store.Select(state => state.Txs)
 				.Subscribe(async w =>
 				{
-					if (w == null) return;
-					await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-					() =>
-					{
-						Items.Clear();
-						foreach (var item in w.Take(3))
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+						() =>
 						{
-							Items.Add(item);
-						}
-					});
-				});
+							if (w == null)
+							{
+								txDisplay.Visibility = Visibility.Collapsed;
+							}
+							else
+							{
+								txDisplay.Visibility = Visibility.Visible;
+
+								Items.Clear();
+								foreach (var item in w.Take(3))
+								{
+									Items.Add(item);
+								}
+
+							}
+						});
+                });
 
 			_ = App.Store.Select(state => state.IsChanged)
 				.Subscribe(async w =>

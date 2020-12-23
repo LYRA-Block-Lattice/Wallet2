@@ -71,6 +71,9 @@
     </PackageReference>
     <PackageReference Include="LiteDB" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Bcl.HashCode">
+      <Version>1.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
@@ -80,9 +83,12 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.5.0</Version>
+    </PackageReference>
     <PackageReference Include="MongoDB.Bson" Version="2.12.0-beta1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Portable.BouncyCastle" Version="1.8.8" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.9" />
     <PackageReference Include="ReduxSimple" Version="3.5.1" />
     <PackageReference Include="Serilog.Extensions.Logging.File">
       <Version>2.0.0</Version>
@@ -91,10 +97,10 @@
       <Version>1.0.0-dev.578</Version>
     </PackageReference>
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>6.1.0-build.201.gdd585882df</Version>
+      <Version>6.1.0-build.205.g2e0e348372</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI" Version="3.4.0-dev.306" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.4.0-dev.306" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="3.5.0-dev.7" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.7" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.33" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />

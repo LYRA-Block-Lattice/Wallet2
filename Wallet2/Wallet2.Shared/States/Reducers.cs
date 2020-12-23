@@ -58,6 +58,13 @@ namespace LyraWallet.States
                             });
                         }
                     ),
+                    On<WalletGetTxHistoryAction, RootState>(
+                        (state, action) => {
+                            return state.With(new {
+                                IsBusy = true
+                            });
+                        }
+                    ),
                     On<WalletSendTokenAction, RootState>(
                         (state, action) => {
                             return state.With(new {
