@@ -21,9 +21,9 @@
 		   TargetType="material:BottomNavigationBar">
 
             <Setter Property="Background"
-				Value="Black" />
+				Value="#424c58" />
             <Setter Property="Foreground"
-				Value="{StaticResource MaterialBottomNavForegroundBrush}" />
+				Value="#fbfdf9" />
             <Setter Property="Height"
 				Value="64" />
             <Setter Property="VerticalAlignment"
@@ -46,7 +46,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="All"
-          VerticalAlignment="Stretch" Padding="20">
+          VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
@@ -66,7 +66,7 @@
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
                 <StackPanel x:Name="withWallet" Visibility="Visible">
-                    <Grid Background="LightSeaGreen" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
+                    <Grid Background="#33c4b3" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -115,12 +115,12 @@
                             </TextBlock>
                             <Button Grid.Column="1" Grid.RowSpan="2" Padding="2"
                                 Height="40" Width="40"
-                                Click="Receive"  Background="GreenYellow" CornerRadius="18">
+                                Click="Receive"  Background="#f68e4f" Foreground="White" CornerRadius="18">
                                 <SymbolIcon Symbol="Download"/>
                             </Button>
                             <Button Grid.Column="2" Grid.RowSpan="2" Padding="2"
                                 Height="40" Width="40"
-                                Click="Send"  Background="GreenYellow" CornerRadius="18">
+                                Click="Send"  Background="#f68e4f" Foreground="White" CornerRadius="18">
                                 <SymbolIcon Symbol="Upload" />
                             </Button>
                         </Grid>
@@ -140,7 +140,7 @@
                         <TextBlock FontSize="24" Padding="20" FontWeight="Bold">
                         Recent transactions
                         </TextBlock>
-                        <ListView ItemsSource="{Binding }" Padding="10">
+                        <ListView ItemsSource="{Binding }" Padding="10" >
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TxInfo">
                                     <Grid HorizontalAlignment="Stretch">
