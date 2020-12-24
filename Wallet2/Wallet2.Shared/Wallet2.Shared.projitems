@@ -69,6 +69,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WalletSettings.xaml.cs">
       <DependentUpon>WalletSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\AuthenticationMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryEncryptionFlowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryEncryptionFlowService.IEventsDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryEncryptionFlowService.IPersistenceDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryImplementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryImplementationHelper.Android.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryImplementationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryImplementationHelper.iOS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\BiometryImplementationHelper.Unavailable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\FingerprintService.Android.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\FingerprintService.iOS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\FingerprintService.UWP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IAuthorizedUserEncryptionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IAuthorizedUserSigningService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IBiometryEncryptionFlowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IBiometryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IFingerprintService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\IUserAuthenticationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BiometryService.Uno\ModelHelper.iOS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Effects.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)States\Reducers.cs" />
