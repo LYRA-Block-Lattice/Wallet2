@@ -5,6 +5,9 @@
     <PackageReference Include="CoinGeckoAsyncApi">
       <Version>1.3.5</Version>
     </PackageReference>
+    <PackageReference Include="GeneratedSerializers.Json">
+      <Version>0.2.0-dev.10</Version>
+    </PackageReference>
     <PackageReference Include="Lyra.Data">
       <Version>1.7.11.11</Version>
     </PackageReference>
@@ -34,8 +37,14 @@
     <PackageReference Include="MongoDB.Bson">
       <Version>2.12.0-beta1</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugins.Fingerprint">
+      <Version>2.1.3</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Reactive.Annex.Uno">
+      <Version>0.2.0-dev.16</Version>
     </PackageReference>
     <PackageReference Include="ReduxSimple">
       <Version>3.5.1</Version>
@@ -50,7 +59,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
     <PackageReference Include="Uno.UI">
-      <Version>3.5.0-dev.2</Version>
+      <Version>3.5.0-dev.9</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.0.0-beta5</Version>
