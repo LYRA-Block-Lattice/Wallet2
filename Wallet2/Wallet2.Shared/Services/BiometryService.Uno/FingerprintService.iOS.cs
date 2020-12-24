@@ -129,7 +129,7 @@ namespace BiometryService
 				var context = new LAContext();
 
 				// Using LAPolicy.DeviceOwnerAuthentication will make authentication fallback on the passcode if touch id fails.
-				var authenticationPolicy = _fallbackOnPasscodeAuthentication ? LAPolicy.DeviceOwnerAuthentication : LAPolicy.DeviceOwnerAuthenticationWithBiometrys;
+				var authenticationPolicy = _fallbackOnPasscodeAuthentication ? LAPolicy.DeviceOwnerAuthentication : LAPolicy.DeviceOwnerAuthenticationWithBiometrics;
 
 				// Must call CanEvaluatePolicy before LAContext.BiometryType can be read
 				var canEvaluatePolicy = context.CanEvaluatePolicy(authenticationPolicy, out NSError error);
@@ -158,7 +158,7 @@ namespace BiometryService
 		{
 			var context = new LAContext();
 
-			return context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrys, out var error) || (error.Code != -5 && error.Code != -7);
+			return context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out var error) || (error.Code != -5 && error.Code != -7);
 		}
 
 		private bool CheckSupport()
@@ -166,7 +166,7 @@ namespace BiometryService
 			var context = new LAContext();
 
 			return UIDevice.CurrentDevice.CheckSystemVersion(9, 0) &&
-				(context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrys, out var error) || error.Code != -6);
+				(context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out var error) || error.Code != -6);
 		}
 
 		public async Task<byte[]> Decrypt(CancellationToken ct, string keyName, byte[] data)

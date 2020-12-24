@@ -38,7 +38,7 @@ namespace BiometryService
 				// If for some reason the context.BiometryType was not set during the CanEvaluatePolicy call,
 				// it will contain the value None (0). If such a value is held, we need to go through the
 				// fallback procedure below.
-				context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrys, out NSError error);
+				context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out NSError error);
 
 				var systemVersion = new Version(UIDevice.CurrentDevice.SystemVersion);
 				if (systemVersion >= _minimalVersionBiometryType) // Version 11.0.0 did not contain the BiometryType field. This means we cannot use CheckVersion because it only compares Major.Minor
