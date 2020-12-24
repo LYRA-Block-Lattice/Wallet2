@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +17,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ZXing;
+using ZXing.Mobile;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,9 +32,13 @@ namespace Wallet2.Shared.Pages
         List<string> tokens;
         WalletSendSettings settings;
 
+        MobileBarcodeScanner scanner;
+
         public SendToken()
         {
             this.InitializeComponent();
+
+            scanner = new MobileBarcodeScanner();
 
             this.Loaded += SendToken_Loaded;
 
@@ -105,7 +112,28 @@ namespace Wallet2.Shared.Pages
 
         private void Scan_Click(object sender, RoutedEventArgs e)
         {
+            //Tell our scanner to use the default overlay
+            scanner.UseCustomOverlay = false;
+            //We can customize the top and bottom text of our default overlay
+            scanner.TopText = "Hold camera up to QR-Code";
+            scanner.BottomText = "Camera will automatically scan QR-Code\r\n\r\nPress the 'Back' button to Cancel";
+            //Start scanning
+            scanner.Scan().ContinueWith(t =>
+            {
+                if (t.Result != null)
+                    HandleScanResult(t.Result);
+            });
+        }
 
+        private void HandleScanResult(Result result)
+        {
+            var t = Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                if (!string.IsNullOrWhiteSpace(result.Text) && result.Text.StartsWith("lyra:"))
+                    txtAddr.Text = result.Text.Substring(5);
+            });
+            Task.WaitAll(t.AsTask());
         }
     }
 }

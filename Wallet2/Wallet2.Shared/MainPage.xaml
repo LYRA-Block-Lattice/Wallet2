@@ -38,10 +38,10 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>-->
+        </Style>
 
         <Style TargetType="material:BottomNavigationBar"
-		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />
+		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />-->
 
     </Page.Resources>
 
@@ -63,10 +63,11 @@
             </TextBlock>
             <Button Grid.Column="1" Content="Scan" Click="scan" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </Grid>
-        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" Padding="20">
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
             <StackPanel>
-                <StackPanel x:Name="withWallet" Visibility="Visible">
-                    <Grid Background="{ThemeResource PrimaryColor}" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">
+                <StackPanel x:Name="withWallet" Visibility="Visible" Padding="12,0,12,0">
+                    <Grid Background="{ThemeResource PrimaryColor}" CornerRadius="20" 
+                          Margin="20" Padding="25" RowSpacing="2" MaxWidth="450">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
