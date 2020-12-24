@@ -3,6 +3,8 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Android.Views;
+using Android;
+using Plugin.Fingerprint;
 
 namespace Wallet2.Droid
 {
@@ -13,9 +15,17 @@ namespace Wallet2.Droid
 		)]
 	public class MainActivity : Windows.UI.Xaml.ApplicationActivity
 	{
-        protected override void OnCreate(Bundle bundle)
+		readonly string[] PermissionsReq =
+		{
+			Manifest.Permission.UseFingerprint,
+			Manifest.Permission.UseBiometric
+        };
+
+		protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+			CrossFingerprint.SetCurrentActivityResolver(() => this);
 
 			Xamarin.Essentials.Platform.Init(Application);
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
@@ -25,6 +35,8 @@ namespace Wallet2.Droid
         {
             base.OnCreate(savedInstanceState, persistentState);
 
+			CrossFingerprint.SetCurrentActivityResolver(() => this);
+
 			Xamarin.Essentials.Platform.Init(Application);
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}
@@ -33,6 +45,8 @@ namespace Wallet2.Droid
 		{
 			global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
+
+
 	}
 }
 

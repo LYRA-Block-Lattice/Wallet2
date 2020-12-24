@@ -1,4 +1,6 @@
 ﻿using LyraWallet.States;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 using Wallet2.Shared.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -61,7 +64,7 @@ namespace Wallet2.Shared.Pages
 
             settings.toAddress = txtAddr.Text;      // android bug. not binding properly.
         }
-        private void Send_Click(object sender, RoutedEventArgs e)
+        private async void Send_Click(object sender, RoutedEventArgs e)
         {
             // TODO: add argument check here
             string errMsg = null;
@@ -94,6 +97,26 @@ namespace Wallet2.Shared.Pages
                 var messageDialog = new MessageDialog(errMsg);
                 _ = messageDialog.ShowAsync();
                 return;
+            }
+
+            var localSettings = ApplicationData.Current.LocalSettings;
+            var bioEnabled = "ture" == localSettings.Values["biometric"]?.ToString();
+            if (bioEnabled)
+            {
+                var fpService = CrossFingerprint.Current;// Mvx.Resolve<IFingerprint>(); // or use dependency injection and inject IFingerprint
+
+                var request = new AuthenticationRequestConfiguration("Prove you have mvx fingers!", "Because without it you can't have access");
+                var result = await fpService.AuthenticateAsync(request);
+                if (result.Authenticated)
+                {
+
+                }
+                else
+                {
+                    var messageDialog = new MessageDialog("Biometric authentication failed.");
+                    _ = messageDialog.ShowAsync();
+                    return;
+                }
             }
 
             var moAct = new WalletSendTokenAction

@@ -1,4 +1,8 @@
-﻿using LyraWallet.States;
+﻿using BiometryService;
+using LyraWallet.States;
+using MvvmCross;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,8 +35,8 @@ namespace Wallet2.Shared.Pages
             this.InitializeComponent();
 
             var localSettings = ApplicationData.Current.LocalSettings;
-            bool v = "ture" == localSettings.Values["devmode"]?.ToString();
-            chkDev.IsChecked = v;
+            chkDev.IsChecked = "ture" == localSettings.Values["devmode"]?.ToString();
+            chkBio.IsChecked = "ture" == localSettings.Values["biometric"]?.ToString();
         }
 
         private void DevChecked(object sender, RoutedEventArgs e)
@@ -84,6 +88,32 @@ namespace Wallet2.Shared.Pages
 
                 Frame.Navigate(typeof(MainPage));
             }
+        }
+
+        private async void BioChecked(object sender, RoutedEventArgs e)
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            if ("ture" == localSettings.Values["biometric"]?.ToString())
+                return;
+
+            var fpService = CrossFingerprint.Current;// Mvx.Resolve<IFingerprint>(); // or use dependency injection and inject IFingerprint
+
+            var request = new AuthenticationRequestConfiguration("Prove you have mvx fingers!", "Because without it you can't have access");
+            var result = await fpService.AuthenticateAsync(request);
+            if (result.Authenticated)
+            {                
+                localSettings.Values["biometric"] = "ture";
+            }
+            else
+            {
+                chkBio.IsChecked = false;
+            }
+        }
+
+        private void BioUnChecked(object sender, RoutedEventArgs e)
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["biometric"] = "false";
         }
     }
 }

@@ -35,6 +35,13 @@ namespace Wallet2.Shared.Pages
             this.InitializeComponent();
 
             _settings = new WalletCreateSettings();
+
+            this.Loaded += OpenWithPassword_Loaded;
+        }
+
+        private void OpenWithPassword_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)

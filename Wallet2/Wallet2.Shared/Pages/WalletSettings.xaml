@@ -24,9 +24,12 @@
         </StackPanel>        
         
         <StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
-            <CheckBox Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
+            <CheckBox x:Name="chkDev" Style="{StaticResource MaterialCheckBoxStyle}"
                   Padding="0,30,0,30" Checked="DevChecked" Unchecked="DevUnChecked"
              Content="Developer Mode" />
+            <CheckBox x:Name="chkBio" Style="{StaticResource MaterialCheckBoxStyle}"
+                  Padding="0,30,0,30" Checked="BioChecked" Unchecked="BioUnChecked"
+             Content="Biometric Service" />
             <Button Content="Reset Wallet"
                     Click="ResetWallet" Style="{StaticResource MaterialContainedButtonStyle}" />
         </StackPanel>
