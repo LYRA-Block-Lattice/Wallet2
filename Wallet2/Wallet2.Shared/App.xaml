@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
         <!--<Style TargetType="ToggleSwitch"
             BasedOn="{StaticResource MaterialToggleSwitchStyle}" />-->
     </Application.Resources>

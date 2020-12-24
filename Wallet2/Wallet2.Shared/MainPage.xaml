@@ -17,7 +17,7 @@
         <converters:StringFormatConverter x:Key="StringFormatConverter" />
         <converters:BalanceConverter x:Key="BalanceConverter" />
 
-        <Style x:Key="MaterialBottomNavigationBarStyle"
+        <!--<Style x:Key="MaterialBottomNavigationBarStyle"
 		   TargetType="material:BottomNavigationBar">
 
             <Setter Property="Background"
@@ -25,7 +25,7 @@
             <Setter Property="Foreground"
 				Value="{ThemeResource TextColor}" />
             <Setter Property="Height"
-				Value="64" />
+				Value="50" />
             <Setter Property="VerticalAlignment"
 				Value="Bottom" />
 
@@ -33,12 +33,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="material:BottomNavigationBar">
                         <Grid x:Name="PART_LayoutRoot"
-						  Height="64"
+						  Height="72"
 						  Background="{TemplateBinding Background}"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
 
         <Style TargetType="material:BottomNavigationBar"
 		   BasedOn="{StaticResource MaterialBottomNavigationBarStyle}" />
@@ -51,7 +51,7 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
+            <!--<RowDefinition Height="50"/>-->
         </Grid.RowDefinitions>
         <Grid MaxWidth="450" Padding="10">
             <Grid.ColumnDefinitions>
@@ -284,25 +284,25 @@ Lyra blockchain provides instant confirmations, custom tokens with targeted smar
     Message="Restart the application to apply the latest update.">
             </muxc:InfoBar>
         </StackPanel>
-        <StackPanel Grid.Row="3">
+        <!--<StackPanel Grid.Row="3">
             <material:BottomNavigationBar xmlns:material="using:Uno.Material.Controls">
                 <material:BottomNavigationBar.Items>
-                    <material:BottomNavigationBarItem Label=" ">
+                    <material:BottomNavigationBarItem Label="Wallet">
                         <material:BottomNavigationBarItem.Icon>
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE825;"/>
                         </material:BottomNavigationBarItem.Icon>
                     </material:BottomNavigationBarItem>
-                    <material:BottomNavigationBarItem Label=" ">
+                    <material:BottomNavigationBarItem Label="Swap">
                         <material:BottomNavigationBarItem.Icon>
                             <SymbolIcon Symbol="Sync" />
                         </material:BottomNavigationBarItem.Icon>
                     </material:BottomNavigationBarItem>
-                    <material:BottomNavigationBarItem Label=" ">
+                    <material:BottomNavigationBarItem Label="Community">
                         <material:BottomNavigationBarItem.Icon>
                             <SymbolIcon Symbol="Emoji2" />
                         </material:BottomNavigationBarItem.Icon>
                     </material:BottomNavigationBarItem>
-                    <material:BottomNavigationBarItem Label=" ">
+                    <material:BottomNavigationBarItem Label="Notification">
                         <material:BottomNavigationBarItem.Icon>
                             <SymbolIcon Symbol="Flag" />
                         </material:BottomNavigationBarItem.Icon>
@@ -312,13 +312,13 @@ Lyra blockchain provides instant confirmations, custom tokens with targeted smar
                                                   xmlns:entities="using:Uno.Material.Entities" />
                         </material:BottomNavigationBarItem.Badge>
                     </material:BottomNavigationBarItem>
-                    <material:BottomNavigationBarItem Label=" ">
+                    <material:BottomNavigationBarItem Label="Settings">
                         <material:BottomNavigationBarItem.Icon>
                             <SymbolIcon Symbol="Setting" />
                         </material:BottomNavigationBarItem.Icon>
                     </material:BottomNavigationBarItem>
                 </material:BottomNavigationBar.Items>
             </material:BottomNavigationBar>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>
