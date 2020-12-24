@@ -63,7 +63,7 @@
             </TextBlock>
             <Button Grid.Column="1" Content="Scan" Click="scan" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </Grid>
-        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" Padding="20">
             <StackPanel>
                 <StackPanel x:Name="withWallet" Visibility="Visible">
                     <Grid Background="{ThemeResource PrimaryColor}" CornerRadius="20" Padding="25" RowSpacing="2" MaxWidth="450">

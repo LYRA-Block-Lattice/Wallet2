@@ -9,7 +9,7 @@
   <Identity
     Name="14715Wizd.LyraWallet"
     Publisher="CN=3FD7DFD0-9200-4032-B346-D84758DCAB50"
-    Version="1.0.40.0" />
+    Version="1.0.41.0" />
 
   <mp:PhoneIdentity PhoneProductId="560d23b3-64e8-4b7b-967f-028748ef8eb0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
