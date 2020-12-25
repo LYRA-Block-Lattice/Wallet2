@@ -14,31 +14,26 @@
           RowSpacing="0" ColumnSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Header -->
         <CommandBar Content="Address" />
 
-        <StackPanel Grid.Row="1" Padding="20">
-            <TextBlock Text="My public addresses to receive funds" FontSize="24" FontWeight="Bold" Padding="20" />
-
-            <StackPanel Orientation="Horizontal" Padding="10">
-                <Image
-               Source="ms-appx:///Assets/lyraicon50x50.png"
-                               Stretch="Uniform"
-		               HorizontalAlignment="Center"
-		               VerticalAlignment="Center"/>
-
-                <TextBlock Text="My main account" FontSize="18" VerticalAlignment="Center" Padding="20" />               
-            </StackPanel>
+        <StackPanel Grid.Row="1" Padding="20,10,20,10">
+            <TextBlock Text="My public addresses to receive funds" FontSize="12" Padding="10" />
 
             <Border Background="LightGreen" CornerRadius="20" Padding="15">
-                <StackPanel>
+                <StackPanel Spacing="12">
 
+                    <Image Height="60" Width="60"
+               Source="ms-appx:///Assets/lyraicon50x50.png"
+		               HorizontalAlignment="Center"
+		               VerticalAlignment="Center"/>
+                    
                     <Image Name="QrCodeImg" />
 
-                    <TextBlock Text="{x:Bind accountId}" Padding="20"/>                    
+                    <TextBlock Text="{x:Bind accountId}" FontSize="10" TextWrapping="Wrap" Padding="20"/>                    
                 </StackPanel>
             </Border>
             
