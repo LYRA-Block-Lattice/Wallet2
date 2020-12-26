@@ -112,12 +112,12 @@ namespace Wallet2
 #if __IOS__
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 #endif
-            //#if __MACOS__
-            //            ZXing.Net.Mobile.Forms.MacOS.Platform.Init();
-            //#endif
-            //#if NETFX_CORE
-            //            ZXing.Net.Mobile.Forms.WindowsUniversal.Platform.Init();
-            //#endif
+#if __MACOS__
+            ZXing.Net.Mobile.Forms.MacOS.Platform.Init();
+#endif
+#if NETFX_CORE
+            ZXing.Net.Mobile.Forms.WindowsUniversal.Platform.Init();
+#endif
 
 
             // Set a default palette to make sure all colors used by MaterialResources exist
@@ -285,3 +285,18 @@ namespace Wallet2
         }*/
     }
 }
+
+// nuget pkg fail. remove if fixed in future.
+#if NETFX_CORE
+namespace ZXing.Net.Mobile.Forms.WindowsUniversal
+{
+    public static class Platform
+    {
+        public static void Init()
+        {
+            ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer.Init();
+            ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingBarcodeImageViewRenderer.Init();
+        }
+    }
+}
+#endif

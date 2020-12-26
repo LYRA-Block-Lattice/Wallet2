@@ -41,13 +41,13 @@ namespace Wallet2.Shared.Pages
         {
             this.InitializeComponent();
 
-            scanner = new MobileBarcodeScanner();
-
             this.Loaded += SendToken_Loaded;
 
             settings = new WalletSendSettings();
             DataContext = settings;
             tokens = App.Store.State.wallet.GetLatestBlock()?.Balances?.Keys.ToList();
+
+            scanner = new MobileBarcodeScanner();
         }
 
         private void SendToken_Loaded(object sender, RoutedEventArgs e)
