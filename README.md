@@ -6,6 +6,6 @@ a new wallet project that runs across all major platforms
 
 we need help on but not limited to the various scenario:
 
-. program bugs
-. device compatibility
-. user experience improvement
+* program bugs
+* device compatibility
+* user experience improvement
